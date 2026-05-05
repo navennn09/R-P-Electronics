@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R P Electronics - Premium Electronics Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== TYPOGRAPHY SCALE (from screenshots) =====
+   hero-display: 56px/600/1.07/-0.28px
+   display-lg:   40px/600/1.10/0
+   display-md:   34px/600/1.47/-0.374px
+   lead:         28px/400/1.14/0.196px
+   lead-airy:    24px/300/1.5/0
+   tagline:      21px/600/1.19/0.231px
+   body-strong:  17px/600/1.24/-0.374px
+   body:         17px/400/1.47/-0.374px
+   button-large: 18px/300/1.0/0
+   button-utility:14px/400/1.29/-0.224px
+   nav-link:     12px/400/1.0/-0.12px
+  */
+  :root {
+    --font-primary: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --clr-bg: #f8f9fb;
+    --clr-surface: #ffffff;
+    --clr-border: #e8eaed;
+    --clr-border-light: #f0f2f5;
+    --clr-text-primary: #0a0a0f;
+    --clr-text-secondary: #4a5568;
+    --clr-text-muted: #8896aa;
+    --clr-accent: #2563eb;
+    --clr-accent-light: #eff6ff;
+    --clr-accent-hover: #1d4ed8;
+    --clr-success: #059669;
+    --clr-success-light: #ecfdf5;
+    --clr-warning: #d97706;
+    --clr-warning-light: #fffbeb;
+    --clr-danger: #dc2626;
+    --clr-danger-light: #fef2f2;
+    --clr-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --clr-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --clr-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --clr-gradient-hero: linear-gradient(135deg, #e0e7ff 0%, #f0fdf4 50%, #fef3c7 100%);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--clr-bg);
+    color: var(--clr-text-primary);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.374px;
+    overflow-x: hidden;
+  }
+  #app { min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--clr-border-light); }
+  ::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+
+  /* ===== NAVIGATION ===== */
+  .nav-wrapper { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--clr-border-light); }
+  .nav-top { background: var(--clr-text-primary); color: white; padding: 6px 24px; text-align: center; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; }
+  .nav-main { display: flex; align-items: center; gap: 16px; padding: 14px 32px; max-width: 1400px; margin: 0 auto; width: 100%; }
+  .nav-logo { font-family: var(--font-primary); font-size: 22px; font-weight: 700; color: var(--clr-text-primary); cursor: pointer; white-space: nowrap; }
+  .nav-logo span { color: var(--clr-accent); }
+  .nav-search { flex: 1; display: flex; align-items: center; background: var(--clr-bg); border: 1.5px solid var(--clr-border); border-radius: 100px; padding: 0 18px; gap: 10px; max-width: 480px; }
+  .nav-search input { flex: 1; border: none; background: transparent; font-size: 14px; color: var(--clr-text-primary); outline: none; padding: 9px 0; font-family: var(--font-body); }
+  .nav-search input::placeholder { color: var(--clr-text-muted); }
+  .nav-search svg { color: var(--clr-text-muted); flex-shrink: 0; }
+  .nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .nav-btn { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 100px; border: 1.5px solid var(--clr-border); background: white; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--clr-text-primary); transition: all 0.2s; white-space: nowrap; font-family: var(--font-body); }
+  .nav-btn:hover { border-color: var(--clr-accent); color: var(--clr-accent); background: var(--clr-accent-light); }
+  .nav-btn.cart-btn { background: var(--clr-accent); color: white; border-color: var(--clr-accent); }
+  .nav-btn.cart-btn:hover { background: var(--clr-accent-hover); }
+  .cart-badge { background: #ff4757; color: white; font-size: 11px; font-weight: 700; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+  .nav-links { display: flex; align-items: center; gap: 4px; padding: 8px 32px; max-width: 1400px; margin: 0 auto; width: 100%; border-top: 1px solid var(--clr-border-light); }
+  .nav-link { font-size: 12px; font-weight: 400; letter-spacing: -0.12px; color: var(--clr-text-secondary); padding: 6px 12px; border-radius: 100px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .nav-link:hover, .nav-link.active { color: var(--clr-accent); background: var(--clr-accent-light); }
+
+  /* ===== HERO ===== */
+  .hero { background: var(--clr-gradient-hero); padding: 80px 32px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%); border-radius: 50%; }
+  .hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16,185,129,0.10) 0%, transparent 70%); border-radius: 50%; }
+  .hero-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: white; border: 1px solid var(--clr-border); border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 500; color: var(--clr-text-secondary); margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+  .hero-badge-dot { width: 6px; height: 6px; background: var(--clr-success); border-radius: 50%; }
+  .hero-title { font-family: var(--font-primary); font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.28px; color: var(--clr-text-primary); margin-bottom: 20px; }
+  .hero-title span { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 21px; font-weight: 400; line-height: 1.5; color: var(--clr-text-secondary); margin-bottom: 36px; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--clr-accent); color: white; border: none; border-radius: 100px; padding: 14px 28px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: var(--font-primary); text-decoration: none; }
+  .btn-primary:hover { background: var(--clr-accent-hover); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--clr-text-primary); border: 1.5px solid var(--clr-border); border-radius: 100px; padding: 13px 28px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: var(--font-primary); text-decoration: none; }
+  .btn-secondary:hover { border-color: var(--clr-accent); color: var(--clr-accent); transform: translateY(-1px); }
+  .hero-stats { display: flex; gap: 32px; margin-top: 40px; }
+  .hero-stat-num { font-family: var(--font-primary); font-size: 34px; font-weight: 600; letter-spacing: -0.374px; color: var(--clr-text-primary); }
+  .hero-stat-lbl { font-size: 13px; color: var(--clr-text-muted); }
+  .hero-visual { position: relative; }
+  .hero-card { background: white; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); overflow: hidden; }
+  .hero-img-wrap { height: 280px; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); display: flex; align-items: center; justify-content: center; font-size: 80px; }
+  .hero-card-body { padding: 20px 24px; }
+  .hero-card-title { font-family: var(--font-primary); font-size: 18px; font-weight: 600; }
+  .hero-card-price { font-family: var(--font-primary); font-size: 21px; font-weight: 600; color: var(--clr-accent); margin-top: 6px; }
+  .hero-card-cta { margin-top: 14px; width: 100%; }
+
+  /* ===== CATEGORIES ===== */
+  .section { padding: 60px 32px; max-width: 1400px; margin: 0 auto; width: 100%; }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; }
+  .section-title { font-family: var(--font-primary); font-size: 34px; font-weight: 600; letter-spacing: -0.374px; }
+  .section-link { font-size: 14px; color: var(--clr-accent); cursor: pointer; font-weight: 500; }
+  .section-link:hover { text-decoration: underline; }
+  .cats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .cat-card { background: white; border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1); border: 1.5px solid var(--clr-border-light); box-shadow: var(--shadow-sm); position: relative; }
+  .cat-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(37,99,235,0.14); border-color: var(--clr-accent); }
+  .cat-card:hover .cat-img-overlay { opacity: 1; }
+  .cat-card:hover .cat-svg-wrap svg { transform: scale(1.06); }
+  .cat-svg-wrap { width: 100%; height: 150px; display: block; overflow: hidden; position: relative; }
+  .cat-svg-wrap svg { width: 100%; height: 100%; display: block; transition: transform 0.4s ease; }
+  .cat-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(37,99,235,0.08) 100%); opacity: 0; transition: opacity 0.3s; }
+  .cat-body { padding: 14px 16px 16px; text-align: center; }
+  .cat-name { font-family: var(--font-primary); font-size: 14px; font-weight: 600; color: var(--clr-text-primary); }
+  .cat-count { font-size: 12px; color: var(--clr-text-muted); margin-top: 3px; }
+  /* Premium nav buttons */
+  .nav-btn-icon { display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 100px; border: 1.5px solid var(--clr-border); background: white; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--clr-text-primary); transition: all 0.22s; white-space: nowrap; font-family: var(--font-primary); letter-spacing: -0.1px; }
+  .nav-btn-icon:hover { border-color: var(--clr-accent); color: var(--clr-accent); background: var(--clr-accent-light); box-shadow: 0 2px 12px rgba(37,99,235,0.12); }
+  .nav-btn-icon.wishlist-btn:hover { border-color: #f43f5e; color: #f43f5e; background: #fff1f2; box-shadow: 0 2px 12px rgba(244,63,94,0.12); }
+  .nav-btn-icon.cart-btn { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-color: transparent; box-shadow: 0 4px 14px rgba(37,99,235,0.30); }
+  .nav-btn-icon.cart-btn:hover { background: linear-gradient(135deg, #1d4ed8, #1e40af); box-shadow: 0 6px 20px rgba(37,99,235,0.40); transform: translateY(-1px); }
+  .nav-icon-svg { flex-shrink: 0; display: flex; align-items: center; }
+  .cart-badge { background: #f43f5e; color: white; font-size: 10px; font-weight: 700; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(244,63,94,0.4); }
+
+  /* ===== PRODUCTS GRID ===== */
+  .products-layout { display: grid; grid-template-columns: 260px 1fr; gap: 28px; }
+  .filters-panel { background: white; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--clr-border-light); height: fit-content; position: sticky; top: 120px; box-shadow: var(--shadow-sm); }
+  .filter-title { font-family: var(--font-primary); font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .filter-section { margin-bottom: 24px; }
+  .filter-label { font-size: 13px; font-weight: 600; color: var(--clr-text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .filter-option { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; font-size: 14px; color: var(--clr-text-secondary); }
+  .filter-option:hover { color: var(--clr-accent); }
+  .filter-option input[type=checkbox] { accent-color: var(--clr-accent); width: 15px; height: 15px; cursor: pointer; }
+  .filter-option.selected { color: var(--clr-accent); font-weight: 500; }
+  .price-inputs { display: flex; gap: 8px; align-items: center; }
+  .price-input { flex: 1; padding: 8px 10px; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--clr-text-primary); font-family: var(--font-body); outline: none; }
+  .price-input:focus { border-color: var(--clr-accent); }
+  .price-sep { color: var(--clr-text-muted); font-size: 12px; }
+  .apply-btn { width: 100%; padding: 10px; background: var(--clr-accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; font-family: var(--font-body); margin-top: 8px; }
+  .apply-btn:hover { background: var(--clr-accent-hover); }
+  .clear-btn { width: 100%; padding: 9px; background: transparent; color: var(--clr-text-secondary); border: 1px solid var(--clr-border); border-radius: var(--radius-sm); font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); margin-top: 6px; }
+  .clear-btn:hover { border-color: var(--clr-danger); color: var(--clr-danger); }
+
+  .products-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .products-count { font-size: 14px; color: var(--clr-text-muted); }
+  .sort-select { padding: 8px 12px; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); font-size: 14px; background: white; color: var(--clr-text-primary); cursor: pointer; outline: none; font-family: var(--font-body); }
+  .sort-select:focus { border-color: var(--clr-accent); }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+  .product-card { background: white; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--clr-border-light); box-shadow: var(--shadow-sm); transition: all 0.25s; cursor: pointer; position: relative; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--clr-border); }
+  .product-badge { position: absolute; top: 10px; left: 10px; background: var(--clr-accent); color: white; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 100px; z-index: 2; }
+  .product-badge.hot { background: #ff4757; }
+  .product-badge.sale { background: var(--clr-success); }
+  .product-wishlist { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.8); border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+  .product-wishlist:hover { transform: scale(1.15); box-shadow: 0 4px 16px rgba(244,63,94,0.25); border-color: #fecdd3; background: white; }
+  .product-wishlist.wishlisted { background: linear-gradient(135deg,#fff1f2,#ffe4e6); border-color: #fda4af; box-shadow: 0 2px 10px rgba(244,63,94,0.20); }
+  .product-img { width: 100%; height: 180px; background: linear-gradient(135deg, #f0f4ff, #e8f0fe); display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; position: relative; }
+  .product-info { padding: 14px 16px; }
+  .product-brand { font-size: 11px; font-weight: 600; color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .product-name { font-family: var(--font-primary); font-size: 14px; font-weight: 600; color: var(--clr-text-primary); margin: 4px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .product-rating { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--clr-warning); margin-bottom: 8px; }
+  .product-rating span { color: var(--clr-text-muted); }
+  .product-pricing { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .product-price { font-family: var(--font-primary); font-size: 18px; font-weight: 700; color: var(--clr-text-primary); }
+  .product-mrp { font-size: 13px; color: var(--clr-text-muted); text-decoration: line-through; }
+  .product-discount { font-size: 12px; color: var(--clr-success); font-weight: 600; }
+  .add-cart-btn { width: 100%; padding: 9px; background: var(--clr-accent-light); color: var(--clr-accent); border: 1.5px solid #bfdbfe; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
+  .add-cart-btn:hover { background: var(--clr-accent); color: white; border-color: var(--clr-accent); }
+  .add-cart-btn.added { background: var(--clr-success-light); color: var(--clr-success); border-color: #a7f3d0; }
+  .add-cart-btn.added:hover { background: var(--clr-success); color: white; }
+  .pagination { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 40px; }
+  .page-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); background: white; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+  .page-btn:hover { border-color: var(--clr-accent); color: var(--clr-accent); }
+  .page-btn.active { background: var(--clr-accent); color: white; border-color: var(--clr-accent); }
+
+  /* ===== PRODUCT DETAIL ===== */
+  .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 1400px; margin: 0 auto; padding: 32px; }
+  .detail-gallery { position: sticky; top: 120px; height: fit-content; }
+  .detail-main-img { background: linear-gradient(135deg, #f0f4ff, #e8f0fe); border-radius: var(--radius-xl); height: 400px; display: flex; align-items: center; justify-content: center; font-size: 120px; border: 1px solid var(--clr-border-light); }
+  .detail-thumbs { display: flex; gap: 10px; margin-top: 12px; }
+  .detail-thumb { width: 72px; height: 72px; border-radius: var(--radius-md); border: 2px solid var(--clr-border-light); background: #f8faff; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: border-color 0.2s; }
+  .detail-thumb.active { border-color: var(--clr-accent); }
+  .detail-info { padding: 8px 0; }
+  .detail-brand { font-size: 13px; font-weight: 600; color: var(--clr-accent); text-transform: uppercase; letter-spacing: 0.5px; }
+  .detail-title { font-family: var(--font-primary); font-size: 34px; font-weight: 600; letter-spacing: -0.374px; margin: 8px 0 12px; line-height: 1.2; }
+  .detail-rating { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 20px; }
+  .stars { color: var(--clr-warning); }
+  .rating-count { color: var(--clr-text-muted); }
+  .detail-price-wrap { background: var(--clr-bg); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; }
+  .detail-price { font-family: var(--font-primary); font-size: 40px; font-weight: 600; color: var(--clr-text-primary); }
+  .detail-price-meta { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .detail-mrp { font-size: 16px; color: var(--clr-text-muted); text-decoration: line-through; }
+  .detail-save { background: var(--clr-success-light); color: var(--clr-success); font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+  .detail-desc { font-size: 17px; color: var(--clr-text-secondary); line-height: 1.6; margin-bottom: 24px; }
+  .detail-specs { margin-bottom: 28px; }
+  .specs-title { font-family: var(--font-primary); font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+  .spec-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--clr-border-light); font-size: 14px; }
+  .spec-key { color: var(--clr-text-muted); font-weight: 500; }
+  .spec-val { font-weight: 500; color: var(--clr-text-primary); }
+  .detail-actions { display: flex; gap: 12px; }
+  .detail-actions .btn-primary { flex: 1; justify-content: center; font-size: 16px; padding: 14px; }
+  .detail-actions .btn-secondary { padding: 14px 18px; }
+
+  /* ===== CART ===== */
+  .cart-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; max-width: 1400px; margin: 0 auto; padding: 32px; }
+  .cart-items { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); overflow: hidden; }
+  .cart-item { display: flex; gap: 16px; padding: 20px; border-bottom: 1px solid var(--clr-border-light); align-items: center; }
+  .cart-item-img { width: 80px; height: 80px; background: linear-gradient(135deg, #f0f4ff, #e8f0fe); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-family: var(--font-primary); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .cart-item-brand { font-size: 12px; color: var(--clr-text-muted); }
+  .cart-item-price { font-family: var(--font-primary); font-size: 17px; font-weight: 700; margin-top: 8px; }
+  .qty-ctrl { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); overflow: hidden; }
+  .qty-btn { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: var(--clr-bg); border: none; cursor: pointer; font-size: 16px; font-weight: 600; transition: background 0.2s; }
+  .qty-btn:hover { background: var(--clr-accent-light); }
+  .qty-num { width: 36px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; background: white; }
+  .remove-btn { background: none; border: none; color: var(--clr-text-muted); cursor: pointer; padding: 4px; transition: color 0.2s; font-size: 18px; }
+  .remove-btn:hover { color: var(--clr-danger); }
+  .cart-summary { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); padding: 24px; height: fit-content; position: sticky; top: 120px; }
+  .summary-title { font-family: var(--font-primary); font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 12px; }
+  .summary-row.total { font-family: var(--font-primary); font-size: 18px; font-weight: 700; padding-top: 16px; border-top: 1px solid var(--clr-border); margin-top: 8px; }
+  .summary-row.total .val { color: var(--clr-accent); }
+  .promo-wrap { display: flex; gap: 8px; margin: 16px 0; }
+  .promo-input { flex: 1; padding: 9px 12px; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); font-size: 13px; font-family: var(--font-body); outline: none; }
+  .promo-input:focus { border-color: var(--clr-accent); }
+  .promo-btn { padding: 9px 14px; background: var(--clr-text-primary); color: white; border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+  .checkout-btn { width: 100%; padding: 14px; background: var(--clr-accent); color: white; border: none; border-radius: var(--radius-md); font-family: var(--font-primary); font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.25s; margin-top: 12px; }
+  .checkout-btn:hover { background: var(--clr-accent-hover); transform: translateY(-1px); }
+
+  /* ===== CHECKOUT ===== */
+  .checkout-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; max-width: 1400px; margin: 0 auto; padding: 32px; }
+  .checkout-form { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); padding: 32px; }
+  .form-section-title { font-family: var(--font-primary); font-size: 20px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .form-section-num { width: 28px; height: 28px; background: var(--clr-accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .form-section { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--clr-border-light); }
+  .form-section:last-child { border-bottom: none; margin-bottom: 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--clr-text-secondary); margin-bottom: 6px; }
+  .form-input, .form-select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--clr-border); border-radius: var(--radius-sm); font-size: 15px; font-family: var(--font-body); color: var(--clr-text-primary); background: white; outline: none; transition: border-color 0.2s; }
+  .form-input:focus, .form-select:focus { border-color: var(--clr-accent); }
+  .payment-option { border: 1.5px solid var(--clr-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+  .payment-option.selected { border-color: var(--clr-accent); background: var(--clr-accent-light); }
+  .payment-option .radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--clr-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .payment-option.selected .radio { border-color: var(--clr-accent); }
+  .payment-option.selected .radio::after { content: ''; width: 8px; height: 8px; background: var(--clr-accent); border-radius: 50%; }
+  .payment-icon { font-size: 20px; }
+  .payment-name { font-size: 15px; font-weight: 600; }
+  .payment-desc { font-size: 12px; color: var(--clr-text-muted); }
+  .submit-order-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--clr-accent), #7c3aed); color: white; border: none; border-radius: var(--radius-md); font-family: var(--font-primary); font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 16px rgba(37,99,235,0.3); }
+  .submit-order-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.4); }
+
+  /* ===== ORDER CONFIRMATION ===== */
+  .confirm-page { max-width: 600px; margin: 60px auto; padding: 32px; text-align: center; }
+  .confirm-icon { width: 80px; height: 80px; background: var(--clr-success-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 24px; }
+  .confirm-title { font-family: var(--font-primary); font-size: 34px; font-weight: 600; margin-bottom: 12px; }
+  .confirm-id { font-size: 14px; color: var(--clr-text-muted); margin-bottom: 28px; }
+  .confirm-id span { font-weight: 700; color: var(--clr-accent); }
+  .confirm-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); padding: 24px; text-align: left; margin-bottom: 24px; }
+  .confirm-steps { display: flex; justify-content: space-between; margin-top: 24px; position: relative; }
+  .confirm-steps::before { content: ''; position: absolute; top: 16px; left: 16px; right: 16px; height: 2px; background: var(--clr-border); }
+  .confirm-step { display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1; }
+  .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .step-dot.done { background: var(--clr-success); color: white; }
+  .step-dot.pending { background: var(--clr-border-light); color: var(--clr-text-muted); border: 2px solid var(--clr-border); }
+  .step-label { font-size: 11px; color: var(--clr-text-muted); font-weight: 500; }
+
+  /* ===== ADMIN ===== */
+  .admin-layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  .admin-sidebar { background: #0f172a; color: white; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .admin-logo { padding: 0 24px 24px; font-family: var(--font-primary); font-size: 18px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .admin-logo span { color: #60a5fa; }
+  .admin-nav { padding: 16px 0; }
+  .admin-nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 14px; color: rgba(255,255,255,0.65); cursor: pointer; transition: all 0.2s; }
+  .admin-nav-item:hover { color: white; background: rgba(255,255,255,0.07); }
+  .admin-nav-item.active { color: white; background: rgba(96,165,250,0.15); border-right: 3px solid #60a5fa; }
+  .admin-nav-icon { font-size: 16px; width: 20px; text-align: center; }
+  .admin-main { background: var(--clr-bg); padding: 32px; overflow-y: auto; }
+  .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .admin-page-title { font-family: var(--font-primary); font-size: 28px; font-weight: 700; }
+  .admin-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+  .admin-stat { background: white; border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--clr-border-light); }
+  .admin-stat-icon { font-size: 28px; margin-bottom: 10px; }
+  .admin-stat-num { font-family: var(--font-primary); font-size: 28px; font-weight: 700; }
+  .admin-stat-lbl { font-size: 13px; color: var(--clr-text-muted); margin-top: 4px; }
+  .admin-stat-delta { font-size: 12px; font-weight: 600; margin-top: 6px; }
+  .admin-stat-delta.up { color: var(--clr-success); }
+  .admin-stat-delta.down { color: var(--clr-danger); }
+  .admin-table-wrap { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); overflow: hidden; }
+  .admin-table { width: 100%; border-collapse: collapse; }
+  .admin-table th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: 0.5px; background: var(--clr-bg); border-bottom: 1px solid var(--clr-border-light); }
+  .admin-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid var(--clr-border-light); vertical-align: middle; }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: var(--clr-bg); }
+  .admin-table .prod-img-cell { width: 44px; height: 44px; background: linear-gradient(135deg, #f0f4ff, #e8f0fe); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .admin-table .prod-name { font-weight: 600; font-family: var(--font-primary); font-size: 14px; }
+  .admin-table .prod-cat { font-size: 11px; color: var(--clr-text-muted); margin-top: 2px; }
+  .tbl-btn { padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
+  .tbl-btn.edit { color: var(--clr-accent); border-color: #bfdbfe; background: var(--clr-accent-light); }
+  .tbl-btn.edit:hover { background: var(--clr-accent); color: white; }
+  .tbl-btn.del { color: var(--clr-danger); border-color: #fecaca; background: var(--clr-danger-light); }
+  .tbl-btn.del:hover { background: var(--clr-danger); color: white; }
+  .status-badge { padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+  .status-badge.pending { background: var(--clr-warning-light); color: var(--clr-warning); }
+  .status-badge.shipped { background: #eff6ff; color: var(--clr-accent); }
+  .status-badge.delivered { background: var(--clr-success-light); color: var(--clr-success); }
+  .status-badge.cancelled { background: var(--clr-danger-light); color: var(--clr-danger); }
+  .admin-form { background: white; border-radius: var(--radius-lg); border: 1px solid var(--clr-border-light); padding: 28px; }
+  .admin-form-title { font-family: var(--font-primary); font-size: 20px; font-weight: 600; margin-bottom: 24px; }
+  .admin-form .form-row { grid-template-columns: 1fr 1fr; }
+  .img-upload-area { border: 2px dashed var(--clr-border); border-radius: var(--radius-md); padding: 40px; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .img-upload-area:hover { border-color: var(--clr-accent); background: var(--clr-accent-light); }
+  .img-upload-icon { font-size: 36px; margin-bottom: 8px; }
+  .img-upload-text { font-size: 14px; color: var(--clr-text-muted); }
+  .admin-search { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .admin-search-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--clr-border); border-radius: var(--radius-md); font-size: 14px; font-family: var(--font-body); outline: none; background: white; }
+  .admin-search-input:focus { border-color: var(--clr-accent); }
+
+  /* ===== TOAST ===== */
+  .toast-container { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; }
+  .toast { background: white; border-radius: var(--radius-md); padding: 14px 18px; box-shadow: var(--shadow-lg); border-left: 4px solid var(--clr-success); display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; min-width: 280px; animation: slideIn 0.3s ease; max-width: 360px; }
+  .toast.error { border-left-color: var(--clr-danger); }
+  .toast.info { border-left-color: var(--clr-accent); }
+  @keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  /* ===== MODAL ===== */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+  .modal { background: white; border-radius: var(--radius-xl); padding: 32px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-xl); }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .modal-title { font-family: var(--font-primary); font-size: 22px; font-weight: 700; }
+  .modal-close { background: none; border: 1px solid var(--clr-border); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .modal-close:hover { background: var(--clr-danger-light); border-color: var(--clr-danger); color: var(--clr-danger); }
+  .login-modal-brand { text-align: center; margin-bottom: 24px; }
+  .login-modal-brand h2 { font-family: var(--font-primary); font-size: 28px; font-weight: 700; }
+  .login-modal-brand p { font-size: 14px; color: var(--clr-text-muted); margin-top: 4px; }
+
+  /* ===== FOOTER ===== */
+  .footer { background: #0f172a; color: white; padding: 60px 32px 32px; margin-top: auto; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand h3 { font-family: var(--font-primary); font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .footer-brand h3 span { color: #60a5fa; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .footer-col h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.45); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 8px; cursor: pointer; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  /* ===== EMPTY STATES ===== */
+  .empty-state { text-align: center; padding: 80px 32px; }
+  .empty-icon { font-size: 72px; margin-bottom: 16px; }
+  .empty-title { font-family: var(--font-primary); font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+  .empty-sub { font-size: 15px; color: var(--clr-text-muted); margin-bottom: 24px; }
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb { max-width: 1400px; margin: 0 auto; padding: 16px 32px 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--clr-text-muted); }
+  .breadcrumb span { cursor: pointer; }
+  .breadcrumb span:hover { color: var(--clr-accent); }
+  .breadcrumb .sep { color: var(--clr-border); }
+  .breadcrumb .current { color: var(--clr-text-primary); font-weight: 500; cursor: default; }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .products-layout { grid-template-columns: 1fr; }
+    .filters-panel { position: static; }
+    .cart-layout, .checkout-layout { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cats-grid { grid-template-columns: repeat(3, 1fr); }
+    .admin-layout { grid-template-columns: 1fr; }
+    .admin-sidebar { display: none; }
+    .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-detail { grid-template-columns: 1fr; }
+  }
+  @media(max-width:768px) {
+    .nav-main { padding: 12px 16px; gap: 8px; }
+    .nav-links { padding: 8px 16px; overflow-x: auto; }
+    .hero { padding: 48px 16px; }
+    .hero-title { font-size: 36px; }
+    .section { padding: 40px 16px; }
+    .cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .admin-stats-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 20px; }
+    .hero-stat-num { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+// ============================================================
+// RP ELECTRONIC SHOP - COMPLETE E-COMMERCE APP
+// ============================================================
+
+// ===== DATA STORE =====
+const CATEGORIES = [
+  { id: 'ac', name: 'Air Conditioners', icon: '❄️', count: 52 },
+  { id: 'fridge', name: 'Refrigerators', icon: '🧊', count: 48 },
+  { id: 'cooler', name: 'Air Coolers', icon: '💨', count: 38 },
+  { id: 'tv', name: 'Televisions', icon: '📺', count: 56 },
+  { id: 'appliance', name: 'Home Appliances', icon: '🏠', count: 64 }
+];
+
+const BRANDS = {
+  ac: ['LG','Samsung','Daikin','Voltas','Carrier','Hitachi','Blue Star','Whirlpool'],
+  fridge: ['LG','Samsung','Whirlpool','Godrej','Haier','Bosch','Panasonic','Liebherr'],
+  cooler: ['Symphony','Bajaj','Crompton','Havells','Kenstar','Orient','Usha','Honeywell'],
+  tv: ['LG','Samsung','Sony','OnePlus','Mi','Vu','TCL','Hisense'],
+  appliance: ['Philips','Bosch','LG','Samsung','Bajaj','Prestige','Pigeon','Havells']
+};
+
+const PRODUCT_EMOJIS = { ac:'❄️', fridge:'🧊', cooler:'💨', tv:'📺', appliance:'🔌' };
+const BG_GRADIENTS = {
+  ac: 'linear-gradient(135deg,#e0f2fe,#b3e5fc)',
+  fridge: 'linear-gradient(135deg,#e8f5e9,#c8e6c9)',
+  cooler: 'linear-gradient(135deg,#e3f2fd,#bbdefb)',
+  tv: 'linear-gradient(135deg,#f3e5f5,#e1bee7)',
+  appliance: 'linear-gradient(135deg,#fff8e1,#ffecb3)'
+};
+
+// Generate 240+ products
+function generateProducts() {
+  const products = [];
+  let id = 1;
+  const productTemplates = {
+    ac: [
+      {name:'1.5 Ton 5-Star Split',desc:'Energy efficient 5-star inverter AC with PM 2.5 filter, Wi-Fi control and auto-clean technology',specs:{Capacity:'1.5 Ton',StarRating:'5 Star',Type:'Split',Compressor:'Inverter',Warranty:'5 Years'}},
+      {name:'2 Ton 3-Star Window',desc:'Powerful window AC ideal for large rooms, copper condenser, turbo cool mode',specs:{Capacity:'2 Ton',StarRating:'3 Star',Type:'Window',Compressor:'Rotary',Warranty:'1 Year'}},
+      {name:'1 Ton 3-Star Split',desc:'Compact split AC for small rooms, 4-directional air flow, sleep mode',specs:{Capacity:'1 Ton',StarRating:'3 Star',Type:'Split',Compressor:'Fixed Speed',Warranty:'1 Year'}},
+      {name:'1.5 Ton Inverter Smart',desc:'Smart inverter AC with Alexa & Google Home support, energy saving mode',specs:{Capacity:'1.5 Ton',StarRating:'5 Star',Type:'Split',Compressor:'Dual Inverter',Warranty:'10 Years'}},
+      {name:'2 Ton 5-Star Cassette',desc:'Commercial grade cassette AC for offices and large spaces',specs:{Capacity:'2 Ton',StarRating:'5 Star',Type:'Cassette',Compressor:'Inverter',Warranty:'3 Years'}},
+      {name:'1 Ton Portable AC',desc:'No-installation required portable AC, great for renters',specs:{Capacity:'1 Ton',StarRating:'3 Star',Type:'Portable',Compressor:'Rotary',Warranty:'1 Year'}},
+      {name:'1.5 Ton 3-Star Window',desc:'Budget-friendly window AC with powerful cooling',specs:{Capacity:'1.5 Ton',StarRating:'3 Star',Type:'Window',Compressor:'Rotary',Warranty:'1 Year'}},
+      {name:'2 Ton Inverter Floor Standing',desc:'Premium floor standing unit for commercial spaces',specs:{Capacity:'2 Ton',StarRating:'5 Star',Type:'Floor Standing',Compressor:'Inverter',Warranty:'5 Years'}},
+      {name:'1.5 Ton 4-Star Inverter',desc:'Efficient mid-range inverter AC with humidity control',specs:{Capacity:'1.5 Ton',StarRating:'4 Star',Type:'Split',Compressor:'Inverter',Warranty:'3 Years'}},
+      {name:'1 Ton Smart Inverter',desc:'AI-powered cooling with smartphone app control',specs:{Capacity:'1 Ton',StarRating:'5 Star',Type:'Split',Compressor:'Dual Inverter',Warranty:'5 Years'}},
+    ],
+    fridge: [
+      {name:'265L Double Door Frost Free',desc:'Spacious frost-free refrigerator with digital inverter, 10-year compressor warranty',specs:{Capacity:'265L',Type:'Double Door',StarRating:'3 Star',Compressor:'Digital Inverter',Color:'Elegant Inox'}},
+      {name:'190L Single Door Direct Cool',desc:'Energy efficient single door fridge with anti-fungal gasket',specs:{Capacity:'190L',Type:'Single Door',StarRating:'5 Star',Compressor:'Direct Cool',Color:'Royal Blue'}},
+      {name:'560L Side-by-Side',desc:'Premium side-by-side refrigerator with water & ice dispenser',specs:{Capacity:'560L',Type:'Side-by-Side',StarRating:'4 Star',Compressor:'Linear Inverter',Color:'Matt Black'}},
+      {name:'340L French Door',desc:'Ultra-modern french door fridge with bottom freezer',specs:{Capacity:'340L',Type:'French Door',StarRating:'5 Star',Compressor:'Smart Inverter',Color:'Platinum Silver'}},
+      {name:'215L Triple Door',desc:'Versatile triple door fridge with separate vegetable zone',specs:{Capacity:'215L',Type:'Triple Door',StarRating:'4 Star',Compressor:'Inverter',Color:'Shiny Steel'}},
+      {name:'180L Single Door',desc:'Compact fridge perfect for couples, 5-year warranty',specs:{Capacity:'180L',Type:'Single Door',StarRating:'5 Star',Compressor:'Direct Cool',Color:'Moon Mist'}},
+      {name:'415L Double Door InstaFresh',desc:'Large family fridge with InstaFresh zone and Wi-Fi',specs:{Capacity:'415L',Type:'Double Door',StarRating:'4 Star',Compressor:'Digital Inverter',Color:'Ebony Steel'}},
+      {name:'236L Frost Free Double Door',desc:'Affordable frost-free double door with smart inverter',specs:{Capacity:'236L',Type:'Double Door',StarRating:'3 Star',Compressor:'Smart Inverter',Color:'Digi Grey'}},
+      {name:'630L Multi-Door',desc:'Premium multi-door smart refrigerator with InstaView',specs:{Capacity:'630L',Type:'Multi-Door',StarRating:'5 Star',Compressor:'Linear Compressor',Color:'Matte Black'}},
+      {name:'310L Bottom Freezer',desc:'European style bottom freezer with drawer-type freezer',specs:{Capacity:'310L',Type:'Bottom Freezer',StarRating:'4 Star',Compressor:'Inverter',Color:'Stainless Steel'}},
+    ],
+    cooler: [
+      {name:'60L Desert Air Cooler',desc:'High-capacity desert cooler for large halls, 4-way air deflection, honeycomb pads',specs:{Capacity:'60L',Coverage:'400 sq ft',Type:'Desert',SpeedSettings:'3',Warranty:'1 Year'}},
+      {name:'20L Personal Air Cooler',desc:'Compact personal cooler with turbo fan, ideal for small rooms',specs:{Capacity:'20L',Coverage:'100 sq ft',Type:'Personal',SpeedSettings:'3',Warranty:'1 Year'}},
+      {name:'45L Tower Cooler',desc:'Sleek tower design cooler, 4-sided cooling, inverter compatible',specs:{Capacity:'45L',Coverage:'250 sq ft',Type:'Tower',SpeedSettings:'4',Warranty:'2 Years'}},
+      {name:'80L Industrial Cooler',desc:'Heavy-duty industrial cooler for large commercial spaces',specs:{Capacity:'80L',Coverage:'600 sq ft',Type:'Industrial',SpeedSettings:'3',Warranty:'1 Year'}},
+      {name:'35L Window Cooler',desc:'Window mounted cooler with remote control',specs:{Capacity:'35L',Coverage:'200 sq ft',Type:'Window',SpeedSettings:'3',Warranty:'1 Year'}},
+      {name:'50L Smart Cooler',desc:'Wi-Fi enabled smart cooler with app control and voice commands',specs:{Capacity:'50L',Coverage:'300 sq ft',Type:'Desert',SpeedSettings:'4',Warranty:'2 Years'}},
+      {name:'12L Table Top Cooler',desc:'Ultra-compact table-top cooler, USB powered option available',specs:{Capacity:'12L',Coverage:'50 sq ft',Type:'Personal',SpeedSettings:'2',Warranty:'1 Year'}},
+      {name:'40L Evaporative Cooler',desc:'Energy-efficient evaporative cooler with dust filter',specs:{Capacity:'40L',Coverage:'220 sq ft',Type:'Evaporative',SpeedSettings:'3',Warranty:'1 Year'}},
+    ],
+    tv: [
+      {name:'55" 4K OLED Smart TV',desc:'Cinematic OLED display with Dolby Vision IQ, AI ThinQ, webOS 23',specs:{ScreenSize:'55 inch',Resolution:'4K OLED',Refresh:'120Hz',SmartOS:'webOS',HDR:'Dolby Vision'}},
+      {name:'43" Full HD LED Smart',desc:'Full HD smart TV with HDR10+, built-in Chromecast',specs:{ScreenSize:'43 inch',Resolution:'Full HD',Refresh:'60Hz',SmartOS:'Android',HDR:'HDR10+'}},
+      {name:'65" QLED 8K Smart TV',desc:'Flagship QLED with 8K resolution, Neo Quantum Processor',specs:{ScreenSize:'65 inch',Resolution:'8K QLED',Refresh:'120Hz',SmartOS:'Tizen',HDR:'HDR10+'}},
+      {name:'32" HD Ready Smart TV',desc:'Budget smart TV for bedrooms, 1-year comprehensive warranty',specs:{ScreenSize:'32 inch',Resolution:'HD Ready',Refresh:'60Hz',SmartOS:'Android',HDR:'No'}},
+      {name:'75" 4K Mini LED TV',desc:'Massive 75-inch Mini LED display with 1000 nits brightness',specs:{ScreenSize:'75 inch',Resolution:'4K',Refresh:'144Hz',SmartOS:'Google TV',HDR:'Dolby Vision'}},
+      {name:'50" QLED 4K Smart TV',desc:'Quantum dot display with 100% DCI-P3 color gamut',specs:{ScreenSize:'50 inch',Resolution:'4K QLED',Refresh:'120Hz',SmartOS:'Tizen',HDR:'HDR10+'}},
+      {name:'40" Full HD Android TV',desc:'Pure Android TV with Google Assistant, Chromecast built-in',specs:{ScreenSize:'40 inch',Resolution:'Full HD',Refresh:'60Hz',SmartOS:'Android 11',HDR:'HLG'}},
+      {name:'85" Premium 4K TV',desc:'Ultra-large 85-inch display for home theatres',specs:{ScreenSize:'85 inch',Resolution:'4K',Refresh:'120Hz',SmartOS:'WebOS',HDR:'Dolby Atmos'}},
+      {name:'55" AMOLED Smart TV',desc:'First-in-class AMOLED large screen TV, ultra-thin bezel',specs:{ScreenSize:'55 inch',Resolution:'4K AMOLED',Refresh:'120Hz',SmartOS:'Android',HDR:'Dolby Vision'}},
+      {name:'43" 4K HDR Smart TV',desc:'Affordable 4K smart TV with HDR10 and Dolby Audio',specs:{ScreenSize:'43 inch',Resolution:'4K',Refresh:'60Hz',SmartOS:'Google TV',HDR:'HDR10'}},
+    ],
+    appliance: [
+      {name:'6 kg Semi-Automatic Washer',desc:'Budget semi-automatic washing machine, quick wash 35 min',specs:{Capacity:'6 kg',Type:'Semi-Automatic',Spin:'1300 RPM',Programs:'5',Energy:'3 Star'}},
+      {name:'7.5 kg Fully Automatic Front Load',desc:'Front-load washer with steam wash, 15-min quick wash',specs:{Capacity:'7.5 kg',Type:'Front Load',Spin:'1400 RPM',Programs:'15',Energy:'5 Star'}},
+      {name:'1800W Microwave Oven 28L',desc:'Convection microwave with 28L capacity, 200+ auto menus',specs:{Capacity:'28L',Power:'1800W',Type:'Convection',AutoMenus:'211',Color:'Black'}},
+      {name:'750W Mixer Grinder 3-Jar',desc:'Powerful mixer grinder with 3 SS jars, 5-year warranty',specs:{Power:'750W',Jars:'3',Speed:'3',Warranty:'5 Years',Color:'White/Blue'}},
+      {name:'2000W Room Heater',desc:'Quartz room heater with adjustable thermostat, overheat protection',specs:{Power:'2000W',Type:'Quartz',Thermostat:'Yes',SafetyCutoff:'Yes',Coverage:'150 sq ft'}},
+      {name:'1500W Steam Iron',desc:'Powerful steam iron with ceramic soleplate, continuous steam',specs:{Power:'1500W',SolePlate:'Ceramic',SteamBurst:'Yes',AntiDrip:'Yes',AutoCutoff:'Yes'}},
+      {name:'10L Water Heater Geyser',desc:'Storage water heater with advanced heating technology',specs:{Capacity:'10L',Power:'2000W',StarRating:'5 Star',Warranty:'7 Years',Type:'Storage'}},
+      {name:'1.5L Electric Kettle',desc:'BPA-free stainless steel kettle, 1500W fast boil',specs:{Capacity:'1.5L',Power:'1500W',Material:'SS304',ShutOff:'Auto',BoilTime:'3 min'}},
+      {name:'500W Hand Blender',desc:'Ergonomic hand blender with chopper and whisk attachments',specs:{Power:'500W',Speeds:'5',Attachments:'3',BPA:'Free',Warranty:'2 Years'}},
+      {name:'Bread & Toaster 4-Slice',desc:'Wide-slot 4-slice toaster with 7 browning settings',specs:{Slots:'4',BrowningLevels:'7',WideSlot:'Yes',CrumbTray:'Removable',Wattage:'1500W'}},
+      {name:'8L Air Fryer',desc:'Large family air fryer with 12 preset programs',specs:{Capacity:'8L',Programs:'12',Temperature:'80-200°C',Power:'1700W',Display:'Digital'}},
+      {name:'Induction Cooktop 2000W',desc:'Smart induction with 8 power levels and auto-off',specs:{Power:'2000W',Levels:'8',AutoOff:'Yes',Display:'Crystal',Warranty:'2 Years'}},
+    ]
+  };
+
+  const priceRanges = {
+    ac: [28000, 85000],
+    fridge: [12000, 120000],
+    cooler: [3500, 22000],
+    tv: [12000, 250000],
+    appliance: [1200, 45000]
+  };
+
+  Object.keys(productTemplates).forEach(cat => {
+    const templates = productTemplates[cat];
+    const brands = BRANDS[cat];
+    const [minP, maxP] = priceRanges[cat];
+    const count = cat === 'appliance' ? 55 : cat === 'tv' ? 52 : cat === 'ac' ? 52 : cat === 'fridge' ? 48 : 35;
+
+    for (let i = 0; i < count; i++) {
+      const tmpl = templates[i % templates.length];
+      const brand = brands[i % brands.length];
+      const price = Math.floor(minP + (maxP - minP) * (0.2 + 0.8 * Math.random()));
+      const mrp = Math.floor(price * (1 + 0.1 + 0.3 * Math.random()));
+      const rating = (3.5 + 1.5 * Math.random()).toFixed(1);
+      const reviews = Math.floor(50 + 2000 * Math.random());
+      const isNew = i < 4;
+      const isHot = i >= 4 && i < 8;
+      const isSale = i >= 8 && i < 12;
+
+      products.push({
+        id: id++,
+        name: `${brand} ${tmpl.name}${i > templates.length - 1 ? ' Pro' : ''}`,
+        brand, category: cat,
+        price, mrp,
+        discount: Math.round((1 - price/mrp)*100),
+        rating: parseFloat(rating),
+        reviews,
+        description: tmpl.desc,
+        specs: tmpl.specs,
+        emoji: PRODUCT_EMOJIS[cat],
+        gradient: BG_GRADIENTS[cat],
+        badge: isNew ? 'NEW' : isHot ? 'HOT' : isSale ? 'SALE' : null,
+        inStock: Math.random() > 0.05
+      });
+    }
+  });
+  return products;
+}
+
+// ===== APP STATE =====
+const state = {
+  products: generateProducts(),
+  orders: [
+    { id: 'RP2024001', customer: 'Rajesh Kumar', phone: '9876543210', address: 'B-12, Vaishali Nagar, Jaipur, Rajasthan 302021', items: [{ name: 'LG 1.5 Ton 5-Star Split', price: 45999, qty: 1 }], total: 45999, payment: 'UPI', status: 'delivered', date: '2024-01-15' },
+    { id: 'RP2024002', customer: 'Priya Sharma', phone: '9765432109', address: 'C-45, Malviya Nagar, Jaipur, Rajasthan 302017', items: [{ name: 'Samsung 265L Double Door', price: 28500, qty: 1 }], total: 28500, payment: 'COD', status: 'shipped', date: '2024-01-18' },
+    { id: 'RP2024003', customer: 'Amit Verma', phone: '9654321098', address: '14, Bani Park, Jaipur, Rajasthan 302016', items: [{ name: 'Sony 55" 4K OLED', price: 89990, qty: 1 }, { name: 'Symphony 60L Cooler', price: 8999, qty: 1 }], total: 98989, payment: 'Card', status: 'pending', date: '2024-01-20' },
+    { id: 'RP2024004', customer: 'Sunita Patel', phone: '9543210987', address: '6, Civil Lines, Jaipur, Rajasthan 302006', items: [{ name: 'Daikin 1.5 Ton Inverter', price: 52000, qty: 1 }], total: 52000, payment: 'UPI', status: 'delivered', date: '2024-01-10' },
+  ],
+  cart: [],
+  wishlist: [],
+  currentPage: 'home',
+  selectedProduct: null,
+  filters: { category: 'all', priceMin: '', priceMax: '', brands: [], search: '' },
+  productPage: 1,
+  adminSection: 'dashboard',
+  adminLoggedIn: false,
+  adminPassword: 'admin123',
+  showLoginModal: false,
+  editingProduct: null,
+  toasts: [],
+  sortBy: 'featured',
+  adminSearch: ''
+};
+
+// ===== HELPER FUNCTIONS =====
+const fmt = n => '₹' + n.toLocaleString('en-IN');
+const stars = r => '★'.repeat(Math.floor(r)) + (r%1>=0.5?'½':'') + '☆'.repeat(5-Math.ceil(r));
+let toastId = 0;
+
+function showToast(msg, type='success') {
+  const id = ++toastId;
+  state.toasts = [...state.toasts, { id, msg, type }];
+  render();
+  setTimeout(() => { state.toasts = state.toasts.filter(t => t.id !== id); render(); }, 3500);
+}
+
+function addToCart(product) {
+  const existing = state.cart.find(i => i.id === product.id);
+  if (existing) existing.qty++;
+  else state.cart.push({ ...product, qty: 1 });
+  showToast(`${product.name.substring(0,30)}... added to cart! 🛒`);
+  render();
+}
+
+function removeFromCart(id) {
+  state.cart = state.cart.filter(i => i.id !== id);
+  render();
+}
+
+function updateQty(id, delta) {
+  const item = state.cart.find(i => i.id === id);
+  if (item) {
+    item.qty += delta;
+    if (item.qty < 1) removeFromCart(id);
+    else render();
+  }
+}
+
+function toggleWishlist(product) {
+  const idx = state.wishlist.findIndex(i => i.id === product.id);
+  if (idx > -1) { state.wishlist.splice(idx, 1); showToast('Removed from wishlist', 'info'); }
+  else { state.wishlist.push(product); showToast('Added to wishlist ❤️'); }
+  render();
+}
+
+function cartTotal() { return state.cart.reduce((s, i) => s + i.price * i.qty, 0); }
+function cartCount() { return state.cart.reduce((s, i) => s + i.qty, 0); }
+
+function navigate(page, extra) {
+  state.currentPage = page;
+  if (extra) Object.assign(state, extra);
+  window.scrollTo(0, 0);
+  render();
+}
+
+// ===== FILTER/SORT PRODUCTS =====
+function getFilteredProducts() {
+  let prods = [...state.products];
+  if (state.filters.category !== 'all') prods = prods.filter(p => p.category === state.filters.category);
+  if (state.filters.search) {
+    const q = state.filters.search.toLowerCase();
+    prods = prods.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q));
+  }
+  if (state.filters.priceMin) prods = prods.filter(p => p.price >= parseInt(state.filters.priceMin));
+  if (state.filters.priceMax) prods = prods.filter(p => p.price <= parseInt(state.filters.priceMax));
+  if (state.filters.brands.length) prods = prods.filter(p => state.filters.brands.includes(p.brand));
+  if (state.sortBy === 'price-asc') prods.sort((a,b) => a.price - b.price);
+  else if (state.sortBy === 'price-desc') prods.sort((a,b) => b.price - a.price);
+  else if (state.sortBy === 'rating') prods.sort((a,b) => b.rating - a.rating);
+  else if (state.sortBy === 'newest') prods.sort((a,b) => b.id - a.id);
+  return prods;
+}
+
+// ===== RENDER =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = buildApp();
+  attachEvents();
+}
+
+// ===== BUILD APP =====
+function buildApp() {
+  let content = '';
+  if (state.currentPage === 'admin') {
+    if (!state.adminLoggedIn) {
+      return buildAdminLogin();
+    }
+    return buildAdminLayout();
+  }
+
+  content = `
+    ${buildNav()}
+    <main>
+      ${buildMainContent()}
+    </main>
+    ${buildFooter()}
+    ${buildToasts()}
+    ${state.showLoginModal ? buildLoginModal() : ''}
+  `;
+  return content;
+}
+
+function buildNav() {
+  const cartCount_ = cartCount();
+  return `
+  <nav class="nav-wrapper">
+    <div class="nav-top">🚚 Home Delivery Available | Cash on Delivery Available | EMI from ₹499/month</div>
+    <div class="nav-main">
+      <div class="nav-logo" onclick="navigate('home')">R <span>P</span> Electronics</div>
+      <div class="nav-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search for ACs, TVs, Fridges..." value="${state.filters.search || ''}" oninput="handleSearch(this.value)" id="search-input">
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn-icon wishlist-btn" onclick="navigate('wishlist')">
+          <span class="nav-icon-svg">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="${state.wishlist.length > 0 ? '#f43f5e' : 'none'}" stroke="${state.wishlist.length > 0 ? '#f43f5e' : 'currentColor'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </span>
+          Wishlist${state.wishlist.length > 0 ? `<span style="background:#f43f5e;color:white;font-size:10px;font-weight:700;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center">${state.wishlist.length}</span>` : ''}
+        </button>
+        <button class="nav-btn-icon cart-btn" onclick="navigate('cart')">
+          <span class="nav-icon-svg">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </span>
+          Cart
+          ${cartCount_ > 0 ? `<span class="cart-badge">${cartCount_}</span>` : ''}
+        </button>
+      </div>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link ${state.filters.category==='all'?'active':''}" onclick="filterCat('all')">Store · All Products</span>
+      ${CATEGORIES.map(c => `<span class="nav-link ${state.filters.category===c.id&&state.currentPage==='products'?'active':''}" onclick="filterCat('${c.id}')">${c.icon} ${c.name}</span>`).join('')}
+    </div>
+  </nav>`;
+}
+
+function buildMainContent() {
+  switch(state.currentPage) {
+    case 'home': return buildHome();
+    case 'products': return buildProducts();
+    case 'product-detail': return buildProductDetail();
+    case 'cart': return buildCart();
+    case 'checkout': return buildCheckout();
+    case 'order-confirmed': return buildOrderConfirmed();
+    case 'wishlist': return buildWishlist();
+    default: return buildHome();
+  }
+}
+
+// ===== HOME PAGE =====
+function buildHome() {
+  const featured = state.products.filter(p => p.badge === 'HOT' || p.badge === 'NEW').slice(0, 8);
+  const topRated = [...state.products].sort((a,b) => b.rating - a.rating).slice(0, 8);
+  const bestSellers = [...state.products].sort((a,b) => b.reviews - a.reviews).slice(0, 8);
+
+  return `
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span class="hero-badge-dot"></span> Best Electronic Store in Kuchera</div>
+        <h1 class="hero-title">There's never been<br>a better time to<br><span>upgrade your home</span></h1>
+        <p class="hero-sub">Premium electronics at unbeatable prices. Home delivery across Rajasthan.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="navigate('products')">Shop Now →</button>
+          <button class="btn-secondary" onclick="filterCat('tv')">View Televisions</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num">250+</div><div class="hero-stat-lbl">Products</div></div>
+          <div style="width:1px;background:var(--clr-border)"></div>
+          <div><div class="hero-stat-num">50+</div><div class="hero-stat-lbl">Brands</div></div>
+          <div style="width:1px;background:var(--clr-border)"></div>
+          <div><div class="hero-stat-num">1000+</div><div class="hero-stat-lbl">Happy Customers</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-img-wrap">📺</div>
+          <div class="hero-card-body">
+            <div class="product-brand">SAMSUNG</div>
+            <div class="hero-card-title">65" QLED 4K Smart TV</div>
+            <div class="hero-card-price">₹89,990</div>
+            <button class="btn-primary hero-card-cta" onclick="navigate('products')">Shop Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+      <span class="section-link" onclick="navigate('products')">View All →</span>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card" onclick="filterCat('ac')">
+        <div class="cat-svg-wrap">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="acBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
+              <linearGradient id="acUnit" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0f9ff"/><stop offset="100%" stop-color="#e0f2fe"/></linearGradient>
+              <linearGradient id="acPanel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+              <filter id="acShadow"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2563eb" flood-opacity="0.18"/></filter>
+            </defs>
+            <rect width="260" height="150" fill="url(#acBg)"/>
+            <circle cx="200" cy="30" r="40" fill="white" fill-opacity="0.3"/>
+            <circle cx="50" cy="120" r="28" fill="white" fill-opacity="0.2"/>
+            <!-- AC Unit body -->
+            <rect x="40" y="45" width="180" height="72" rx="10" fill="url(#acUnit)" filter="url(#acShadow)"/>
+            <!-- Front panel blue strip -->
+            <rect x="40" y="45" width="180" height="18" rx="10" fill="url(#acPanel)"/>
+            <rect x="40" y="55" width="180" height="8" rx="0" fill="url(#acPanel)"/>
+            <!-- Display dot -->
+            <circle cx="195" cy="54" r="4" fill="#38bdf8"/>
+            <circle cx="207" cy="54" r="3" fill="#22c55e"/>
+            <!-- Vents -->
+            <rect x="52" y="74" width="156" height="5" rx="2.5" fill="#bae6fd"/>
+            <rect x="52" y="83" width="156" height="5" rx="2.5" fill="#bae6fd"/>
+            <rect x="52" y="92" width="156" height="5" rx="2.5" fill="#bae6fd"/>
+            <rect x="52" y="101" width="100" height="5" rx="2.5" fill="#bae6fd"/>
+            <!-- Cool air waves -->
+            <path d="M40 128 Q65 120 90 128 Q115 136 140 128" stroke="#7dd3fc" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <path d="M60 138 Q85 130 110 138 Q135 146 160 138" stroke="#7dd3fc" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- Snowflakes -->
+            <text x="175" y="135" font-size="13" fill="#2563eb" opacity="0.5" font-family="sans-serif">❄</text>
+            <text x="195" y="143" font-size="10" fill="#2563eb" opacity="0.4" font-family="sans-serif">❄</text>
+            <text x="155" y="143" font-size="9" fill="#2563eb" opacity="0.35" font-family="sans-serif">❄</text>
+          </svg>
+          <div class="cat-img-overlay"></div>
+        </div>
+        <div class="cat-body"><div class="cat-name">Air Conditioners</div><div class="cat-count">52 Products</div></div>
+      </div>
+
+      <div class="cat-card" onclick="filterCat('fridge')">
+        <div class="cat-svg-wrap">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="frBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d1fae5"/><stop offset="100%" stop-color="#a7f3d0"/></linearGradient>
+              <linearGradient id="frBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0fdf4"/><stop offset="100%" stop-color="#dcfce7"/></linearGradient>
+              <linearGradient id="frHandle" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d1d5db"/><stop offset="100%" stop-color="#9ca3af"/></linearGradient>
+              <filter id="frShadow"><feDropShadow dx="2" dy="6" stdDeviation="8" flood-color="#059669" flood-opacity="0.15"/></filter>
+            </defs>
+            <rect width="260" height="150" fill="url(#frBg)"/>
+            <circle cx="210" cy="25" r="35" fill="white" fill-opacity="0.25"/>
+            <!-- Fridge body -->
+            <rect x="72" y="12" width="116" height="130" rx="12" fill="url(#frBody)" filter="url(#frShadow)"/>
+            <!-- Door divider line -->
+            <rect x="72" y="62" width="116" height="3" rx="1.5" fill="#86efac"/>
+            <!-- Freezer section top -->
+            <rect x="78" y="18" width="104" height="38" rx="7" fill="white" fill-opacity="0.6"/>
+            <text x="112" y="42" font-size="22" fill="#2563eb" font-family="sans-serif" opacity="0.7">❄</text>
+            <!-- Fridge section bottom -->
+            <rect x="78" y="70" width="104" height="64" rx="7" fill="white" fill-opacity="0.5"/>
+            <!-- Shelves inside -->
+            <rect x="82" y="85" width="96" height="2" rx="1" fill="#86efac"/>
+            <rect x="82" y="100" width="96" height="2" rx="1" fill="#86efac"/>
+            <rect x="82" y="115" width="96" height="2" rx="1" fill="#86efac"/>
+            <!-- Food items suggestion -->
+            <rect x="86" y="88" width="16" height="10" rx="3" fill="#fca5a5"/>
+            <rect x="106" y="88" width="14" height="10" rx="3" fill="#fdba74"/>
+            <rect x="86" y="103" width="20" height="9" rx="3" fill="#86efac"/>
+            <rect x="110" y="103" width="16" height="9" rx="3" fill="#93c5fd"/>
+            <!-- Handle top -->
+            <rect x="164" y="23" width="6" height="22" rx="3" fill="url(#frHandle)"/>
+            <!-- Handle bottom -->
+            <rect x="164" y="74" width="6" height="28" rx="3" fill="url(#frHandle)"/>
+          </svg>
+          <div class="cat-img-overlay"></div>
+        </div>
+        <div class="cat-body"><div class="cat-name">Refrigerators</div><div class="cat-count">48 Products</div></div>
+      </div>
+
+      <div class="cat-card" onclick="filterCat('cooler')">
+        <div class="cat-svg-wrap">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="clBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e0f2fe"/><stop offset="100%" stop-color="#bae6fd"/></linearGradient>
+              <linearGradient id="clBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0f9ff"/><stop offset="100%" stop-color="#e0f2fe"/></linearGradient>
+              <linearGradient id="clTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#0369a1"/></linearGradient>
+              <filter id="clShadow"><feDropShadow dx="2" dy="5" stdDeviation="7" flood-color="#0284c7" flood-opacity="0.15"/></filter>
+            </defs>
+            <rect width="260" height="150" fill="url(#clBg)"/>
+            <circle cx="205" cy="35" r="38" fill="white" fill-opacity="0.25"/>
+            <!-- Cooler body -->
+            <rect x="75" y="22" width="110" height="115" rx="10" fill="url(#clBody)" filter="url(#clShadow)"/>
+            <!-- Top water panel -->
+            <rect x="75" y="22" width="110" height="26" rx="10" fill="url(#clTop)"/>
+            <rect x="75" y="38" width="110" height="10" fill="url(#clTop)"/>
+            <!-- Water level indicator -->
+            <rect x="82" y="27" width="36" height="12" rx="4" fill="rgba(255,255,255,0.25)"/>
+            <rect x="82" y="27" width="24" height="12" rx="4" fill="rgba(255,255,255,0.4)"/>
+            <text x="86" y="37" font-size="8" fill="white" font-family="sans-serif" font-weight="600">WATER</text>
+            <!-- Fan grille circles -->
+            <circle cx="130" cy="90" r="30" fill="none" stroke="#7dd3fc" stroke-width="1.5"/>
+            <circle cx="130" cy="90" r="22" fill="none" stroke="#7dd3fc" stroke-width="1.5"/>
+            <circle cx="130" cy="90" r="14" fill="none" stroke="#7dd3fc" stroke-width="1.5"/>
+            <circle cx="130" cy="90" r="5" fill="#0284c7"/>
+            <!-- Fan blades -->
+            <path d="M130 90 L125 68 Q128 72 130 75 Z" fill="#bae6fd"/>
+            <path d="M130 90 L152 85 Q148 88 145 90 Z" fill="#bae6fd"/>
+            <path d="M130 90 L135 112 Q132 108 130 105 Z" fill="#bae6fd"/>
+            <path d="M130 90 L108 95 Q112 92 115 90 Z" fill="#bae6fd"/>
+            <!-- Grille lines horizontal -->
+            <rect x="80" y="57" width="100" height="2" rx="1" fill="#7dd3fc" opacity="0.6"/>
+            <!-- Air waves -->
+            <path d="M200 80 Q215 75 225 80 Q235 85 245 80" stroke="#7dd3fc" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+            <path d="M200 90 Q215 85 225 90 Q235 95 245 90" stroke="#7dd3fc" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M200 100 Q215 95 225 100 Q235 105 245 100" stroke="#7dd3fc" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+            <!-- Wheels -->
+            <circle cx="92" cy="133" r="6" fill="#94a3b8"/>
+            <circle cx="168" cy="133" r="6" fill="#94a3b8"/>
+          </svg>
+          <div class="cat-img-overlay"></div>
+        </div>
+        <div class="cat-body"><div class="cat-name">Air Coolers</div><div class="cat-count">38 Products</div></div>
+      </div>
+
+      <div class="cat-card" onclick="filterCat('tv')">
+        <div class="cat-svg-wrap">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="tvBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f3e8ff"/><stop offset="100%" stop-color="#e9d5ff"/></linearGradient>
+              <linearGradient id="tvScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e1b4b"/><stop offset="50%" stop-color="#312e81"/><stop offset="100%" stop-color="#4c1d95"/></linearGradient>
+              <linearGradient id="tvBezel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient>
+              <filter id="tvGlow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="tvShadow"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#7c3aed" flood-opacity="0.2"/></filter>
+            </defs>
+            <rect width="260" height="150" fill="url(#tvBg)"/>
+            <circle cx="195" cy="28" r="36" fill="white" fill-opacity="0.2"/>
+            <!-- TV bezel -->
+            <rect x="28" y="14" width="204" height="116" rx="10" fill="url(#tvBezel)" filter="url(#tvShadow)"/>
+            <!-- Screen -->
+            <rect x="36" y="21" width="188" height="98" rx="6" fill="url(#tvScreen)"/>
+            <!-- Screen content - abstract movie scene -->
+            <rect x="36" y="21" width="188" height="98" rx="6" fill="url(#tvScreen)"/>
+            <!-- Mountains silhouette on screen -->
+            <polygon points="36,119 80,65 110,90 140,55 175,85 224,50 224,119" fill="#4c1d95" opacity="0.6"/>
+            <!-- Sky gradient on screen -->
+            <rect x="36" y="21" width="188" height="40" rx="6" fill="#7c3aed" opacity="0.3"/>
+            <!-- Stars on screen -->
+            <circle cx="60" cy="35" r="1.5" fill="white" opacity="0.8"/>
+            <circle cx="90" cy="28" r="1" fill="white" opacity="0.7"/>
+            <circle cx="140" cy="32" r="1.5" fill="white" opacity="0.9"/>
+            <circle cx="180" cy="26" r="1" fill="white" opacity="0.6"/>
+            <circle cx="200" cy="38" r="1.5" fill="white" opacity="0.8"/>
+            <!-- Play icon overlay -->
+            <circle cx="130" cy="70" r="16" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+            <polygon points="125,63 125,77 140,70" fill="white" opacity="0.8"/>
+            <!-- TV stand -->
+            <rect x="112" y="130" width="36" height="6" rx="3" fill="#1e293b"/>
+            <rect x="95" y="134" width="70" height="5" rx="2.5" fill="#1e293b"/>
+            <!-- Indicator light -->
+            <circle cx="218" cy="115" r="3" fill="#22c55e"/>
+          </svg>
+          <div class="cat-img-overlay"></div>
+        </div>
+        <div class="cat-body"><div class="cat-name">Televisions</div><div class="cat-count">56 Products</div></div>
+      </div>
+
+      <div class="cat-card" onclick="filterCat('appliance')">
+        <div class="cat-svg-wrap">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="apBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fef9c3"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+              <linearGradient id="wmBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#e2e8f0"/></linearGradient>
+              <linearGradient id="wmDoor" x1="0.3" y1="0.3" x2="1" y2="1"><stop offset="0%" stop-color="#e0f2fe"/><stop offset="100%" stop-color="#bae6fd"/></linearGradient>
+              <linearGradient id="mwBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f1f5f9"/><stop offset="100%" stop-color="#e2e8f0"/></linearGradient>
+              <filter id="apShadow"><feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#92400e" flood-opacity="0.12"/></filter>
+            </defs>
+            <rect width="260" height="150" fill="url(#apBg)"/>
+            <circle cx="210" cy="20" r="32" fill="white" fill-opacity="0.3"/>
+            <!-- Washing machine left -->
+            <rect x="18" y="28" width="90" height="108" rx="9" fill="url(#wmBody)" filter="url(#apShadow)"/>
+            <rect x="18" y="28" width="90" height="22" rx="9" fill="#334155"/>
+            <rect x="18" y="40" width="90" height="10" fill="#334155"/>
+            <!-- WM control dots -->
+            <circle cx="34" cy="38" r="4" fill="#f43f5e"/>
+            <circle cx="50" cy="38" r="4" fill="#fbbf24"/>
+            <circle cx="66" cy="38" r="4" fill="#22c55e"/>
+            <rect x="78" y="32" width="22" height="10" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <!-- WM drum door -->
+            <circle cx="63" cy="90" r="33" fill="#1e293b"/>
+            <circle cx="63" cy="90" r="29" fill="url(#wmDoor)"/>
+            <circle cx="63" cy="90" r="20" fill="#e0f2fe" stroke="#93c5fd" stroke-width="1.5"/>
+            <!-- Drum holes pattern -->
+            <circle cx="63" cy="76" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <circle cx="75" cy="83" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <circle cx="77" cy="97" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <circle cx="63" cy="104" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <circle cx="49" cy="97" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <circle cx="49" cy="83" r="3" fill="#7dd3fc" opacity="0.7"/>
+            <!-- Microwave right -->
+            <rect x="152" y="45" width="90" height="68" rx="8" fill="url(#mwBody)" filter="url(#apShadow)"/>
+            <!-- MW door window -->
+            <rect x="158" y="51" width="60" height="56" rx="5" fill="#1e293b"/>
+            <rect x="162" y="55" width="52" height="48" rx="3" fill="#0f172a"/>
+            <!-- MW turntable -->
+            <circle cx="188" cy="79" r="19" fill="#1e293b" opacity="0.5"/>
+            <circle cx="188" cy="79" r="14" fill="rgba(253,186,116,0.15)" stroke="rgba(253,186,116,0.3)" stroke-width="1"/>
+            <!-- Steam waves from MW -->
+            <path d="M176 52 Q178 47 180 52" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M185 52 Q187 46 189 52" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M194 52 Q196 47 198 52" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <!-- MW control panel -->
+            <rect x="220" y="51" width="18" height="56" rx="3" fill="#e2e8f0"/>
+            <circle cx="229" cy="63" r="6" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1"/>
+            <rect x="222" y="73" width="14" height="3" rx="1.5" fill="#94a3b8"/>
+            <rect x="222" y="80" width="14" height="3" rx="1.5" fill="#94a3b8"/>
+            <rect x="222" y="87" width="14" height="3" rx="1.5" fill="#22c55e"/>
+            <rect x="222" y="94" width="14" height="3" rx="1.5" fill="#94a3b8"/>
+          </svg>
+          <div class="cat-img-overlay"></div>
+        </div>
+        <div class="cat-body"><div class="cat-name">Home Appliances</div><div class="cat-count">64 Products</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <span class="section-link" onclick="navigate('products')">See All →</span>
+    </div>
+    <div class="products-grid">
+      ${featured.map(p => buildProductCard(p)).join('')}
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div style="background:linear-gradient(135deg,#1e3a8a,#3b0764);color:white;padding:48px 32px;margin:0;text-align:center">
+    <div style="max-width:700px;margin:0 auto">
+      <div style="font-size:12px;font-weight:600;letter-spacing:2px;opacity:0.6;margin-bottom:12px">SPECIAL OFFER</div>
+      <h2 style="font-family:var(--font-primary);font-size:40px;font-weight:600;margin-bottom:12px">Summer Sale — Up to 40% Off</h2>
+      <p style="font-size:18px;opacity:0.75;margin-bottom:28px">On Air Conditioners & Coolers. Beat the Rajasthan heat.</p>
+      <button class="btn-primary" style="background:white;color:#1e3a8a;font-size:16px;padding:14px 32px" onclick="filterCat('ac')">Shop ACs & Coolers</button>
+    </div>
+  </div>
+
+  <!-- TOP RATED -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Top Rated</h2>
+      <span class="section-link" onclick="navigate('products')">See All →</span>
+    </div>
+    <div class="products-grid">
+      ${topRated.map(p => buildProductCard(p)).join('')}
+    </div>
+  </div>
+
+  <!-- BEST SELLERS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-header">
+      <h2 class="section-title">Best Sellers</h2>
+      <span class="section-link" onclick="navigate('products')">See All →</span>
+    </div>
+    <div class="products-grid">
+      ${bestSellers.map(p => buildProductCard(p)).join('')}
+    </div>
+  </div>
+
+  <!-- TRUST BADGES -->
+  <div style="background:white;border-top:1px solid var(--clr-border-light);border-bottom:1px solid var(--clr-border-light);padding:40px 32px">
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      ${[['🚚','Home Delivery','Available across Rajasthan'],['🔒','Secure Payment','100% safe & encrypted'],['↩️','Easy Returns','30-day return policy'],['🛠','Expert Support','Mon-Sat 9am-7pm']].map(([icon,title,sub])=>`
+      <div style="text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">${icon}</div>
+        <div style="font-family:var(--font-primary);font-size:15px;font-weight:600">${title}</div>
+        <div style="font-size:13px;color:var(--clr-text-muted);margin-top:4px">${sub}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+  `;
+}
+
+// ===== PRODUCT CARD =====
+function buildProductCard(p) {
+  const inCart = state.cart.some(i => i.id === p.id);
+  const inWish = state.wishlist.some(i => i.id === p.id);
+  return `
+  <div class="product-card" onclick="openProduct(${p.id})">
+    ${p.badge ? `<div class="product-badge ${p.badge.toLowerCase()}">${p.badge}</div>` : ''}
+    <div class="product-wishlist ${inWish?'wishlisted':''}" onclick="event.stopPropagation();toggleWishlistById(${p.id})" title="${inWish?'Remove from':'Add to'} wishlist">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="${inWish?'#f43f5e':'none'}" stroke="${inWish?'#f43f5e':'#94a3b8'}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="product-img" style="background:${p.gradient}">${p.emoji}</div>
+    <div class="product-info">
+      <div class="product-brand">${p.brand}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-rating">
+        <span style="color:var(--clr-warning);font-size:13px">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5-Math.floor(p.rating))}</span>
+        <span>${p.rating}</span>
+        <span>(${p.reviews.toLocaleString()})</span>
+      </div>
+      <div class="product-pricing">
+        <span class="product-price">${fmt(p.price)}</span>
+        <span class="product-mrp">${fmt(p.mrp)}</span>
+        <span class="product-discount">${p.discount}% off</span>
+      </div>
+      ${p.inStock ? `
+      <button class="add-cart-btn ${inCart?'added':''}" onclick="event.stopPropagation();addToCartById(${p.id})">
+        ${inCart ? '✓ Added to Cart' : '+ Add to Cart'}
+      </button>` : `<div style="color:var(--clr-danger);font-size:13px;font-weight:600">Out of Stock</div>`}
+    </div>
+  </div>`;
+}
+
+// ===== PRODUCTS PAGE =====
+function buildProducts() {
+  const ITEMS_PER_PAGE = 24;
+  const filtered = getFilteredProducts();
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const start = (state.productPage - 1) * ITEMS_PER_PAGE;
+  const paginated = filtered.slice(start, start + ITEMS_PER_PAGE);
+
+  const catBrands = state.filters.category !== 'all' ? BRANDS[state.filters.category] : [...new Set(Object.values(BRANDS).flat())].sort();
+
+  return `
+  <div class="breadcrumb">
+    <span onclick="navigate('home')">Home</span>
+    <span class="sep">›</span>
+    <span class="current">Products${state.filters.category !== 'all' ? ' › ' + CATEGORIES.find(c=>c.id===state.filters.category)?.name : ''}</span>
+  </div>
+  <div class="section">
+    <div class="products-layout">
+      <!-- FILTERS -->
+      <aside class="filters-panel">
+        <div class="filter-title">🔧 Filters</div>
+
+        <div class="filter-section">
+          <div class="filter-label">Category</div>
+          <div class="filter-option ${state.filters.category==='all'?'selected':''}" onclick="setFilter('category','all')">
+            <input type="checkbox" ${state.filters.category==='all'?'checked':''} readonly> All Categories
+          </div>
+          ${CATEGORIES.map(c => `
+          <div class="filter-option ${state.filters.category===c.id?'selected':''}" onclick="setFilter('category','${c.id}')">
+            <input type="checkbox" ${state.filters.category===c.id?'checked':''} readonly> ${c.icon} ${c.name}
+          </div>`).join('')}
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-label">Price Range</div>
+          <div class="price-inputs">
+            <input class="price-input" type="number" placeholder="Min" value="${state.filters.priceMin}" onchange="state.filters.priceMin=this.value" id="pmin">
+            <span class="price-sep">–</span>
+            <input class="price-input" type="number" placeholder="Max" value="${state.filters.priceMax}" onchange="state.filters.priceMax=this.value" id="pmax">
+          </div>
+          <button class="apply-btn" onclick="applyPriceFilter()">Apply Price Filter</button>
+          <button class="clear-btn" onclick="clearFilters()">Clear All Filters</button>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-label">Brands</div>
+          ${catBrands.slice(0,12).map(b => `
+          <div class="filter-option ${state.filters.brands.includes(b)?'selected':''}" onclick="toggleBrandFilter('${b}')">
+            <input type="checkbox" ${state.filters.brands.includes(b)?'checked':''} readonly> ${b}
+          </div>`).join('')}
+        </div>
+      </aside>
+
+      <!-- PRODUCTS -->
+      <div>
+        <div class="products-header">
+          <div class="products-count"><b>${filtered.length}</b> products found</div>
+          <select class="sort-select" onchange="state.sortBy=this.value;state.productPage=1;render()">
+            <option value="featured" ${state.sortBy==='featured'?'selected':''}>Featured</option>
+            <option value="price-asc" ${state.sortBy==='price-asc'?'selected':''}>Price: Low to High</option>
+            <option value="price-desc" ${state.sortBy==='price-desc'?'selected':''}>Price: High to Low</option>
+            <option value="rating" ${state.sortBy==='rating'?'selected':''}>Top Rated</option>
+            <option value="newest" ${state.sortBy==='newest'?'selected':''}>Newest First</option>
+          </select>
+        </div>
+        ${paginated.length ? `
+        <div class="products-grid">
+          ${paginated.map(p => buildProductCard(p)).join('')}
+        </div>
+        <!-- PAGINATION -->
+        <div class="pagination">
+          ${state.productPage > 1 ? `<div class="page-btn" onclick="goPage(${state.productPage-1})">‹</div>` : ''}
+          ${Array.from({length:Math.min(totalPages,7)}, (_,i) => {
+            let pg = i+1;
+            if (totalPages > 7) {
+              if (state.productPage <= 4) pg = i+1;
+              else if (state.productPage >= totalPages-3) pg = totalPages-6+i;
+              else pg = state.productPage-3+i;
+            }
+            return `<div class="page-btn ${pg===state.productPage?'active':''}" onclick="goPage(${pg})">${pg}</div>`;
+          }).join('')}
+          ${state.productPage < totalPages ? `<div class="page-btn" onclick="goPage(${state.productPage+1})">›</div>` : ''}
+        </div>` : `
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <div class="empty-title">No products found</div>
+          <div class="empty-sub">Try adjusting your filters or search query</div>
+          <button class="btn-primary" onclick="clearFilters()">Clear Filters</button>
+        </div>`}
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===== PRODUCT DETAIL =====
+function buildProductDetail() {
+  const p = state.selectedProduct;
+  if (!p) { navigate('products'); return ''; }
+  const inCart = state.cart.some(i => i.id === p.id);
+  const inWish = state.wishlist.some(i => i.id === p.id);
+  const related = state.products.filter(x => x.category === p.category && x.id !== p.id).slice(0, 6);
+
+  return `
+  <div class="breadcrumb">
+    <span onclick="navigate('home')">Home</span>
+    <span class="sep">›</span>
+    <span onclick="navigate('products')">Products</span>
+    <span class="sep">›</span>
+    <span onclick="filterCat('${p.category}')">${CATEGORIES.find(c=>c.id===p.category)?.name}</span>
+    <span class="sep">›</span>
+    <span class="current">${p.name}</span>
+  </div>
+  <div class="product-detail">
+    <!-- GALLERY -->
+    <div class="detail-gallery">
+      <div class="detail-main-img" style="background:${p.gradient};">${p.emoji}</div>
+      <div class="detail-thumbs">
+        ${[1,2,3,4].map(i => `<div class="detail-thumb ${i===1?'active':''}" style="background:${p.gradient}">${p.emoji}</div>`).join('')}
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="detail-info">
+      <div class="detail-brand">${p.brand}</div>
+      <h1 class="detail-title">${p.name}</h1>
+      <div class="detail-rating">
+        <span class="stars" style="color:var(--clr-warning);font-size:18px">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5-Math.floor(p.rating))}</span>
+        <strong>${p.rating}</strong>
+        <span class="rating-count">(${p.reviews.toLocaleString()} reviews)</span>
+        ${p.inStock ? '<span style="color:var(--clr-success);font-size:13px;font-weight:600">● In Stock</span>' : '<span style="color:var(--clr-danger);font-size:13px;font-weight:600">● Out of Stock</span>'}
+      </div>
+
+      <div class="detail-price-wrap">
+        <div class="detail-price">${fmt(p.price)}</div>
+        <div class="detail-price-meta">
+          <span class="detail-mrp">MRP ${fmt(p.mrp)}</span>
+          <span class="detail-save">You save ${fmt(p.mrp - p.price)} (${p.discount}%)</span>
+        </div>
+        <div style="font-size:13px;color:var(--clr-text-muted);margin-top:8px">Inclusive of all taxes • EMI from ₹${Math.round(p.price/12).toLocaleString()}/month</div>
+      </div>
+
+      <p class="detail-desc">${p.description}</p>
+
+      <div class="detail-specs">
+        <div class="specs-title">Specifications</div>
+        ${Object.entries(p.specs).map(([k,v]) => `
+        <div class="spec-row">
+          <span class="spec-key">${k}</span>
+          <span class="spec-val">${v}</span>
+        </div>`).join('')}
+      </div>
+
+      <div class="detail-actions">
+        <button class="btn-primary" onclick="addToCartById(${p.id})" style="padding:14px 24px">
+          ${inCart ? '✓ In Cart — Add Again' : '🛒 Add to Cart'}
+        </button>
+        <button class="btn-primary" style="background:linear-gradient(135deg,#059669,#047857)" onclick="addToCartById(${p.id});navigate('checkout')">Buy Now</button>
+        <button class="btn-secondary ${inWish?'':'btn-secondary'}" onclick="toggleWishlistById(${p.id})" style="${inWish?'border-color:#f43f5e;color:#f43f5e;background:#fff1f2':'border-color:var(--clr-border)'}" title="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="${inWish?'#f43f5e':'none'}" stroke="${inWish?'#f43f5e':'currentColor'}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+
+      <div style="background:var(--clr-success-light);border-radius:var(--radius-md);padding:14px;margin-top:20px;font-size:14px;color:var(--clr-success)">
+        🚚 <strong>Home Delivery</strong> available | ↩️ <strong>30-day</strong> easy return | 🛡 <strong>Official</strong> brand warranty
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div class="section" style="padding-top:0">
+    <div class="section-header">
+      <h2 class="section-title">Related Products</h2>
+    </div>
+    <div class="products-grid">
+      ${related.map(p => buildProductCard(p)).join('')}
+    </div>
+  </div>`;
+}
+
+// ===== CART =====
+function buildCart() {
+  if (!state.cart.length) return `
+  <div class="empty-state" style="margin-top:60px">
+    <div class="empty-icon">🛒</div>
+    <div class="empty-title">Your cart is empty</div>
+    <div class="empty-sub">Add some amazing electronics to get started!</div>
+    <button class="btn-primary" onclick="navigate('products')">Shop Now</button>
+  </div>`;
+
+  const subtotal = cartTotal();
+  const shipping = subtotal > 999 ? 0 : 99;
+  const total = subtotal + shipping;
+
+  return `
+  <div class="breadcrumb">
+    <span onclick="navigate('home')">Home</span>
+    <span class="sep">›</span>
+    <span class="current">Shopping Cart</span>
+  </div>
+  <div class="cart-layout">
+    <div>
+      <h2 style="font-family:var(--font-primary);font-size:24px;font-weight:700;margin:0 0 20px">Shopping Cart (${cartCount()} items)</h2>
+      <div class="cart-items">
+        ${state.cart.map(item => `
+        <div class="cart-item">
+          <div class="cart-item-img" style="background:${item.gradient}">${item.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-brand">${item.brand}</div>
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${fmt(item.price)}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+            <div class="qty-ctrl">
+              <button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
+              <div class="qty-num">${item.qty}</div>
+              <button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
+            </div>
+            <strong style="font-family:var(--font-primary);min-width:80px;text-align:right">${fmt(item.price * item.qty)}</strong>
+            <button class="remove-btn" onclick="removeFromCart(${item.id})" title="Remove">✕</button>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-title">Order Summary</div>
+      <div class="summary-row"><span>Subtotal (${cartCount()} items)</span><span>${fmt(subtotal)}</span></div>
+      <div class="summary-row"><span>Shipping</span><span style="color:${shipping===0?'var(--clr-success)':'inherit'}">${shipping===0?'FREE':fmt(shipping)}</span></div>
+      ${shipping === 0 ? '' : `<div style="font-size:12px;color:var(--clr-success);margin:-8px 0 8px">Add ${fmt(999-subtotal)} more for free shipping</div>`}
+      <div class="promo-wrap">
+        <input class="promo-input" type="text" placeholder="Promo code">
+        <button class="promo-btn" onclick="showToast('Promo applied! 🎉')">Apply</button>
+      </div>
+      <div class="summary-row total"><span>Total</span><span class="val">${fmt(total)}</span></div>
+      <button class="checkout-btn" onclick="navigate('checkout')">Proceed to Checkout →</button>
+      <button class="btn-secondary" style="width:100%;margin-top:8px;justify-content:center" onclick="navigate('products')">Continue Shopping</button>
+    </div>
+  </div>`;
+}
+
+// ===== CHECKOUT =====
+function buildCheckout() {
+  const subtotal = cartTotal();
+  const shipping = subtotal > 999 ? 0 : 99;
+  const total = subtotal + shipping;
+
+  return `
+  <div class="breadcrumb">
+    <span onclick="navigate('home')">Home</span>
+    <span class="sep">›</span>
+    <span onclick="navigate('cart')">Cart</span>
+    <span class="sep">›</span>
+    <span class="current">Checkout</span>
+  </div>
+  <div class="checkout-layout">
+    <div class="checkout-form">
+      <div class="form-section">
+        <div class="form-section-title"><span class="form-section-num">1</span> Contact Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input class="form-input" type="text" placeholder="Enter your full name" id="co-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-input" type="tel" placeholder="10-digit mobile number" id="co-phone">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="your@email.com" id="co-email">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title"><span class="form-section-num">2</span> Delivery Address</div>
+        <div class="form-group">
+          <label class="form-label">Street Address *</label>
+          <input class="form-input" type="text" placeholder="House No., Street, Area" id="co-addr">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">City *</label>
+            <input class="form-input" type="text" placeholder="City" id="co-city" value="Kuchera">
+          </div>
+          <div class="form-group">
+            <label class="form-label">State</label>
+            <select class="form-select" id="co-state">
+              <option>Rajasthan</option><option>Delhi</option><option>Maharashtra</option><option>Gujarat</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Pincode *</label>
+            <input class="form-input" type="text" placeholder="6-digit pincode" id="co-pin">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Landmark</label>
+            <input class="form-input" type="text" placeholder="Near..." id="co-land">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title"><span class="form-section-num">3</span> Payment Method</div>
+        ${[
+          ['cod','💵','Cash on Delivery','Pay when your order arrives'],
+          ['upi','📱','UPI Payment','Google Pay, PhonePe, Paytm & more'],
+          ['card','💳','Credit / Debit Card','Visa, Mastercard, RuPay accepted'],
+          ['emi','📊','EMI','No-cost EMI on orders above ₹3,000'],
+        ].map(([val,icon,name,desc]) => `
+        <div class="payment-option ${val==='cod'?'selected':''}" onclick="selectPayment(this,'${val}')">
+          <div class="radio ${val==='cod'?'':''}"></div>
+          <span class="payment-icon">${icon}</span>
+          <div>
+            <div class="payment-name">${name}</div>
+            <div class="payment-desc">${desc}</div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <div>
+      <div class="cart-summary">
+        <div class="summary-title">Order Summary</div>
+        ${state.cart.map(item => `
+        <div style="display:flex;gap:10px;margin-bottom:12px;font-size:13px">
+          <div style="width:36px;height:36px;background:${item.gradient};border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">${item.emoji}</div>
+          <div style="flex:1">
+            <div style="font-weight:600;line-height:1.3">${item.name.substring(0,30)}${item.name.length>30?'...':''}</div>
+            <div style="color:var(--clr-text-muted)">Qty: ${item.qty}</div>
+          </div>
+          <div style="font-weight:700">${fmt(item.price*item.qty)}</div>
+        </div>`).join('')}
+        <hr style="border:none;border-top:1px solid var(--clr-border-light);margin:12px 0">
+        <div class="summary-row"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+        <div class="summary-row"><span>Shipping</span><span style="color:var(--clr-success)">${shipping===0?'FREE':fmt(shipping)}</span></div>
+        <div class="summary-row total"><span>Total</span><span class="val">${fmt(total)}</span></div>
+        <button class="submit-order-btn" onclick="placeOrder()">Place Order ${fmt(total)} →</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===== ORDER CONFIRMED =====
+function buildOrderConfirmed() {
+  const orderId = state.lastOrderId || 'RP' + Date.now().toString().slice(-7);
+  return `
+  <div class="confirm-page">
+    <div class="confirm-icon">✅</div>
+    <h1 class="confirm-title">Order Confirmed!</h1>
+    <p class="confirm-id">Your order ID: <span>${orderId}</span></p>
+    <p style="font-size:15px;color:var(--clr-text-secondary);margin-bottom:28px">Thank you for shopping with RP Electronic Shop! We'll deliver to your address within 3-5 business days.</p>
+
+    <div class="confirm-card">
+      <div style="font-family:var(--font-primary);font-size:16px;font-weight:600;margin-bottom:14px">Order Status</div>
+      <div class="confirm-steps">
+        <div class="confirm-step">
+          <div class="step-dot done">✓</div>
+          <div class="step-label">Ordered</div>
+        </div>
+        <div class="confirm-step">
+          <div class="step-dot pending">2</div>
+          <div class="step-label">Processing</div>
+        </div>
+        <div class="confirm-step">
+          <div class="step-dot pending">3</div>
+          <div class="step-label">Shipped</div>
+        </div>
+        <div class="confirm-step">
+          <div class="step-dot pending">4</div>
+          <div class="step-label">Delivered</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" onclick="navigate('home')">Continue Shopping</button>
+      <button class="btn-secondary" onclick="navigate('products')">Browse More</button>
+    </div>
+  </div>`;
+}
+
+// ===== WISHLIST =====
+function buildWishlist() {
+  if (!state.wishlist.length) return `
+  <div class="empty-state" style="margin-top:60px">
+    <div class="empty-icon">❤️</div>
+    <div class="empty-title">Your wishlist is empty</div>
+    <div class="empty-sub">Save products you love for later!</div>
+    <button class="btn-primary" onclick="navigate('products')">Browse Products</button>
+  </div>`;
+
+  return `
+  <div class="section">
+    <h2 class="section-title" style="margin-bottom:24px">My Wishlist (${state.wishlist.length})</h2>
+    <div class="products-grid">
+      ${state.wishlist.map(p => buildProductCard(p)).join('')}
+    </div>
+  </div>`;
+}
+
+// ===== ADMIN LOGIN =====
+function buildAdminLogin() {
+  return `
+  <div style="min-height:100vh;background:linear-gradient(135deg,#0f172a,#1e3a8a);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="background:white;border-radius:24px;padding:48px;width:100%;max-width:420px;box-shadow:0 24px 80px rgba(0,0,0,0.3)">
+      <div style="text-align:center;margin-bottom:32px">
+        <div style="font-size:48px;margin-bottom:12px">⚙️</div>
+        <h1 style="font-family:var(--font-primary);font-size:28px;font-weight:700">Admin Panel</h1>
+        <p style="color:var(--clr-text-muted);font-size:14px;margin-top:6px">R P Electronics Dashboard</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input class="form-input" type="text" value="admin" id="admin-user" style="font-size:15px">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Enter password" id="admin-pass" onkeydown="if(event.key==='Enter')adminLogin()">
+      </div>
+      <button onclick="adminLogin()" style="width:100%;padding:14px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;border-radius:12px;font-family:var(--font-primary);font-size:16px;font-weight:600;cursor:pointer;margin-top:8px">Login to Admin →</button>
+      <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--clr-text-muted)">Default: admin / admin123</div>
+      <button onclick="navigate('home')" style="width:100%;padding:10px;background:transparent;border:1px solid var(--clr-border);border-radius:8px;font-size:14px;cursor:pointer;margin-top:8px;color:var(--clr-text-secondary)">← Back to Store</button>
+    </div>
+  </div>`;
+}
+
+// ===== ADMIN LAYOUT =====
+function buildAdminLayout() {
+  const navItems = [
+    { id:'dashboard', icon:'📊', label:'Dashboard' },
+    { id:'products', icon:'📦', label:'Products' },
+    { id:'add-product', icon:'➕', label:'Add Product' },
+    { id:'orders', icon:'🛒', label:'Orders' },
+    { id:'payments', icon:'💳', label:'Payment Settings' },
+  ];
+
+  return `
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-logo">R <span>P</span> Admin</div>
+      <nav class="admin-nav">
+        ${navItems.map(item => `
+        <div class="admin-nav-item ${state.adminSection===item.id?'active':''}" onclick="setAdminSection('${item.id}')">
+          <span class="admin-nav-icon">${item.icon}</span>${item.label}
+        </div>`).join('')}
+        <div style="margin-top:auto;padding:24px 24px 0">
+          <div class="admin-nav-item" onclick="navigate('home')"><span class="admin-nav-icon">🏠</span>View Store</div>
+          <div class="admin-nav-item" onclick="adminLogout()"><span class="admin-nav-icon">🚪</span>Logout</div>
+        </div>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div style="display:flex;gap:8px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,0.4);background:#0f172a;padding:8px 16px;border-radius:8px;width:fit-content">
+        ${navItems.map(n=>`<span style="cursor:pointer;color:${state.adminSection===n.id?'#60a5fa':'rgba(255,255,255,0.5)'}" onclick="setAdminSection('${n.id}')">${n.label}</span>`).join('<span style="opacity:0.3"> › </span>')}
+      </div>
+      ${buildAdminSection()}
+    </main>
+  </div>`;
+}
+
+function buildAdminSection() {
+  switch(state.adminSection) {
+    case 'dashboard': return buildAdminDashboard();
+    case 'products': return buildAdminProducts();
+    case 'add-product': return buildAdminAddProduct();
+    case 'orders': return buildAdminOrders();
+    case 'payments': return buildAdminPayments();
+    default: return buildAdminDashboard();
+  }
+}
+
+function buildAdminDashboard() {
+  const totalRevenue = state.orders.reduce((s, o) => s + o.total, 0);
+  const deliveredOrders = state.orders.filter(o => o.status === 'delivered').length;
+
+  return `
+  <div class="admin-header">
+    <h1 class="admin-page-title">Dashboard</h1>
+    <div style="font-size:13px;color:var(--clr-text-muted)">Today: ${new Date().toLocaleDateString('en-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric'})}</div>
+  </div>
+  <div class="admin-stats-grid">
+    <div class="admin-stat">
+      <div class="admin-stat-icon">💰</div>
+      <div class="admin-stat-num">${fmt(totalRevenue)}</div>
+      <div class="admin-stat-lbl">Total Revenue</div>
+      <div class="admin-stat-delta up">↑ 12.5% from last month</div>
+    </div>
+    <div class="admin-stat">
+      <div class="admin-stat-icon">🛒</div>
+      <div class="admin-stat-num">${state.orders.length}</div>
+      <div class="admin-stat-lbl">Total Orders</div>
+      <div class="admin-stat-delta up">↑ 8 new today</div>
+    </div>
+    <div class="admin-stat">
+      <div class="admin-stat-icon">📦</div>
+      <div class="admin-stat-num">${state.products.length}</div>
+      <div class="admin-stat-lbl">Products Listed</div>
+      <div class="admin-stat-delta up">↑ 15 added this week</div>
+    </div>
+    <div class="admin-stat">
+      <div class="admin-stat-icon">✅</div>
+      <div class="admin-stat-num">${deliveredOrders}</div>
+      <div class="admin-stat-lbl">Orders Delivered</div>
+      <div class="admin-stat-delta up">↑ 94% success rate</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
+    <div class="admin-table-wrap">
+      <div style="padding:16px 20px;border-bottom:1px solid var(--clr-border-light);font-family:var(--font-primary);font-weight:600;font-size:16px">Recent Orders</div>
+      <table class="admin-table">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          ${state.orders.slice(0,4).map(o => `
+          <tr>
+            <td><strong style="font-family:var(--font-primary)">${o.id}</strong></td>
+            <td>${o.customer}</td>
+            <td><strong>${fmt(o.total)}</strong></td>
+            <td><span class="status-badge ${o.status}">${o.status}</span></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="admin-table-wrap">
+      <div style="padding:16px 20px;border-bottom:1px solid var(--clr-border-light);font-family:var(--font-primary);font-weight:600;font-size:16px">Category Overview</div>
+      ${CATEGORIES.map(c => {
+        const count = state.products.filter(p => p.category === c.id).length;
+        const pct = Math.round(count / state.products.length * 100);
+        return `
+        <div style="padding:12px 20px;border-bottom:1px solid var(--clr-border-light)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:14px">
+            <span>${c.icon} ${c.name}</span><span style="font-weight:600">${count} products</span>
+          </div>
+          <div style="height:6px;background:var(--clr-border-light);border-radius:3px">
+            <div style="height:6px;background:var(--clr-accent);border-radius:3px;width:${pct}%"></div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+function buildAdminProducts() {
+  let prods = state.products;
+  if (state.adminSearch) {
+    const q = state.adminSearch.toLowerCase();
+    prods = prods.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q));
+  }
+  if (state.adminCatFilter) {
+    prods = prods.filter(p => p.category === state.adminCatFilter);
+  }
+  const page = state.adminProductPage || 1;
+  const perPage = 20;
+  const total = prods.length;
+  const paginated = prods.slice((page-1)*perPage, page*perPage);
+
+  return `
+  <div class="admin-header">
+    <h1 class="admin-page-title">Products (${total})</h1>
+    <button class="btn-primary" onclick="setAdminSection('add-product')">+ Add New Product</button>
+  </div>
+  <div class="admin-search">
+    <input class="admin-search-input" type="text" placeholder="Search products..." value="${state.adminSearch||''}" oninput="state.adminSearch=this.value;state.adminProductPage=1;render()">
+    <select class="sort-select" onchange="filterAdminCat(this.value)">
+      <option value="">All Categories</option>
+      ${CATEGORIES.map(c=>`<option value="${c.id}" ${state.adminCatFilter===c.id?'selected':''}>${c.name}</option>`).join('')}
+    </select>
+  </div>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead><tr><th>Image</th><th>Product</th><th>Brand</th><th>Price</th><th>Stock</th><th>Rating</th><th>Actions</th></tr></thead>
+      <tbody>
+        ${paginated.map(p => `
+        <tr>
+          <td><div class="admin-table prod-img-cell" style="background:${p.gradient}">${p.emoji}</div></td>
+          <td>
+            <div class="admin-table prod-name">${p.name}</div>
+            <div class="admin-table prod-cat">${CATEGORIES.find(c=>c.id===p.category)?.name}</div>
+          </td>
+          <td>${p.brand}</td>
+          <td><strong>${fmt(p.price)}</strong><br><small style="color:var(--clr-text-muted)">MRP ${fmt(p.mrp)}</small></td>
+          <td><span class="status-badge ${p.inStock?'delivered':'cancelled'}">${p.inStock?'In Stock':'Out of Stock'}</span></td>
+          <td>⭐ ${p.rating} (${p.reviews})</td>
+          <td style="display:flex;gap:6px;align-items:center">
+            <button class="tbl-btn edit" onclick="editProduct(${p.id})">Edit</button>
+            <button class="tbl-btn del" onclick="deleteProduct(${p.id})">Delete</button>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination" style="margin-top:20px">
+    ${page>1?`<div class="page-btn" onclick="adminPage(${page-1})">‹</div>`:''}
+    ${Array.from({length:Math.min(Math.ceil(total/perPage),5)},(_,i)=>`<div class="page-btn ${i+1===page?'active':''}" onclick="adminPage(${i+1})">${i+1}</div>`).join('')}
+    ${page<Math.ceil(total/perPage)?`<div class="page-btn" onclick="adminPage(${page+1})">›</div>`:''}
+  </div>`;
+}
+
+function buildAdminAddProduct() {
+  const editing = state.editingProduct;
+  return `
+  <div class="admin-header">
+    <h1 class="admin-page-title">${editing ? 'Edit Product' : 'Add New Product'}</h1>
+    <button class="btn-secondary" onclick="state.editingProduct=null;setAdminSection('products')">← Back to Products</button>
+  </div>
+  <div class="admin-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Product Name *</label>
+        <input class="form-input" type="text" placeholder="e.g. LG 1.5 Ton 5-Star Inverter AC" id="ap-name" value="${editing?editing.name:''}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Brand *</label>
+        <input class="form-input" type="text" placeholder="e.g. LG" id="ap-brand" value="${editing?editing.brand:''}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Category *</label>
+        <select class="form-select" id="ap-cat">
+          ${CATEGORIES.map(c=>`<option value="${c.id}" ${editing&&editing.category===c.id?'selected':''}>${c.name}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Price (₹) *</label>
+        <input class="form-input" type="number" placeholder="e.g. 45000" id="ap-price" value="${editing?editing.price:''}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">MRP (₹) *</label>
+        <input class="form-input" type="number" placeholder="e.g. 60000" id="ap-mrp" value="${editing?editing.mrp:''}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Stock Status</label>
+        <select class="form-select" id="ap-stock">
+          <option value="1" ${!editing||editing.inStock?'selected':''}>In Stock</option>
+          <option value="0" ${editing&&!editing.inStock?'selected':''}>Out of Stock</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="form-input" rows="3" placeholder="Product description..." id="ap-desc" style="resize:vertical">${editing?editing.description:''}</textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Product Image (Emoji placeholder)</label>
+      <div class="img-upload-area" onclick="showToast('Image upload feature — connect backend for real uploads','info')">
+        <div class="img-upload-icon">${editing?editing.emoji:'📷'}</div>
+        <div class="img-upload-text">Click to upload image<br><small>JPG, PNG, WebP up to 5MB</small></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:8px">
+      <button class="btn-primary" onclick="${editing?'saveEditProduct()':'saveNewProduct()'}" style="padding:13px 32px">
+        ${editing ? '✓ Save Changes' : '+ Add Product'}
+      </button>
+      ${editing ? `<button class="btn-secondary" onclick="state.editingProduct=null;setAdminSection('add-product')">Cancel Edit</button>` : ''}
+    </div>
+  </div>`;
+}
+
+function buildAdminOrders() {
+  return `
+  <div class="admin-header">
+    <h1 class="admin-page-title">Orders (${state.orders.length})</h1>
+  </div>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead><tr><th>Order ID</th><th>Date</th><th>Customer</th><th>Contact</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Update</th></tr></thead>
+      <tbody>
+        ${state.orders.map(o => `
+        <tr>
+          <td><strong style="font-family:var(--font-primary);font-size:13px">${o.id}</strong></td>
+          <td style="font-size:13px">${o.date}</td>
+          <td>
+            <div style="font-weight:600;font-size:14px">${o.customer}</div>
+            <div style="font-size:12px;color:var(--clr-text-muted)">${o.address.substring(0,30)}...</div>
+          </td>
+          <td style="font-size:13px">${o.phone}</td>
+          <td style="font-size:13px">${o.items.length} item${o.items.length>1?'s':''}</td>
+          <td><strong>${fmt(o.total)}</strong></td>
+          <td><span style="font-size:12px;padding:3px 8px;background:var(--clr-bg);border-radius:4px">${o.payment}</span></td>
+          <td><span class="status-badge ${o.status}">${o.status}</span></td>
+          <td>
+            <select style="font-size:12px;padding:4px 6px;border:1px solid var(--clr-border);border-radius:4px;background:white" onchange="updateOrderStatus('${o.id}',this.value)">
+              <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
+              <option value="shipped" ${o.status==='shipped'?'selected':''}>Shipped</option>
+              <option value="delivered" ${o.status==='delivered'?'selected':''}>Delivered</option>
+              <option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option>
+            </select>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+function buildAdminPayments() {
+  const methods = [
+    { id:'cod', name:'Cash on Delivery', icon:'💵', enabled: true, desc:'Customer pays when order is delivered' },
+    { id:'upi', name:'UPI Payment', icon:'📱', enabled: true, desc:'Google Pay, PhonePe, Paytm, BHIM UPI' },
+    { id:'card', name:'Credit/Debit Card', icon:'💳', enabled: true, desc:'Visa, Mastercard, RuPay cards' },
+    { id:'emi', name:'EMI', icon:'📊', enabled: false, desc:'No-cost EMI for eligible products' },
+    { id:'netbanking', name:'Net Banking', icon:'🏦', enabled: false, desc:'All major Indian banks supported' },
+    { id:'wallet', name:'Digital Wallets', icon:'👛', enabled: true, desc:'Paytm Wallet, Amazon Pay' },
+  ];
+
+  return `
+  <div class="admin-header">
+    <h1 class="admin-page-title">Payment Settings</h1>
+  </div>
+  <div class="admin-form">
+    <div class="admin-form-title">Manage Payment Methods</div>
+    ${methods.map(m => `
+    <div style="display:flex;align-items:center;gap:16px;padding:16px;border:1px solid var(--clr-border-light);border-radius:12px;margin-bottom:10px;background:${m.enabled?'var(--clr-success-light)':'var(--clr-bg)'}">
+      <span style="font-size:28px">${m.icon}</span>
+      <div style="flex:1">
+        <div style="font-family:var(--font-primary);font-size:16px;font-weight:600">${m.name}</div>
+        <div style="font-size:13px;color:var(--clr-text-muted);margin-top:2px">${m.desc}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:${m.enabled?'var(--clr-success)':'var(--clr-text-muted)'}">${m.enabled?'Active':'Inactive'}</span>
+        <div onclick="togglePaymentMethod(this,'${m.id}')" style="width:44px;height:24px;border-radius:12px;background:${m.enabled?'var(--clr-success)':'var(--clr-border)'};cursor:pointer;position:relative;transition:background 0.2s">
+          <div style="width:18px;height:18px;background:white;border-radius:50%;position:absolute;top:3px;left:${m.enabled?'23px':'3px'};transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></div>
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+// ===== FOOTER =====
+function buildFooter() {
+  return `
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>R <span>P</span> Electronics</h3>
+          <p>Rajasthan's trusted electronics store since 2010. We bring you premium home appliances from top brands at the best prices with expert after-sales support.</p>
+          <div style="margin-top:16px;display:flex;gap:8px">
+            ${['📘','📸','▶️','🐦'].map(icon=>`<div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px">${icon}</div>`).join('')}
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          ${CATEGORIES.map(c=>`<a onclick="filterCat('${c.id}')">${c.icon} ${c.name}</a>`).join('')}
+        </div>
+        <div class="footer-col">
+          <h4>Customer</h4>
+          <a>My Orders</a>
+          <a onclick="navigate('cart')">Shopping Cart</a>
+          <a onclick="navigate('wishlist')">Wishlist</a>
+          <a>Track Order</a>
+          <a>Return Policy</a>
+          <a>EMI Options</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a>📍 Khajwana Road, Kuchera, Rajasthan 341024</a>
+          <a>📞 +91 81073 02230</a>
+          <a>✉️ support@rpelectronics.in</a>
+          <a>🕒 Mon-Sat: 9am - 7pm</a>
+          <a>💬 Live Chat Support</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy" id="secret-admin" onclick="handleSecretClick()" style="cursor:default;user-select:none">© 2024 R P Electronics. All rights reserved.</div>
+        <div style="display:flex;gap:16px">
+          ${['Privacy Policy','Terms & Conditions','Refund Policy'].map(t=>`<a style="font-size:13px;color:rgba(255,255,255,0.4);cursor:pointer">${t}</a>`).join('')}
+        </div>
+      </div>
+    </div>
+  </footer>`;
+}
+
+// ===== TOASTS =====
+function buildToasts() {
+  if (!state.toasts.length) return '';
+  return `<div class="toast-container">${state.toasts.map(t=>`<div class="toast ${t.type}"><span>${t.type==='success'?'✅':t.type==='error'?'❌':'ℹ️'}</span>${t.msg}</div>`).join('')}</div>`;
+}
+
+function buildLoginModal() {
+  return `
+  <div class="modal-overlay" onclick="if(event.target===this)state.showLoginModal=false;render()">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Admin Login</div>
+        <button class="modal-close" onclick="state.showLoginModal=false;render()">✕</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===== EVENT HANDLERS =====
+function attachEvents() {}
+
+window.navigate = navigate;
+window.filterCat = (cat) => {
+  state.filters.category = cat;
+  state.productPage = 1;
+  state.currentPage = 'products';
+  window.scrollTo(0, 0);
+  render();
+};
+window.handleSearch = (val) => {
+  state.filters.search = val;
+  state.productPage = 1;
+  if (state.currentPage !== 'products') {
+    state.currentPage = 'products';
+  }
+  render();
+};
+window.setFilter = (key, val) => {
+  state.filters[key] = val;
+  state.productPage = 1;
+  render();
+};
+window.applyPriceFilter = () => {
+  state.productPage = 1;
+  render();
+};
+window.clearFilters = () => {
+  state.filters = { category: 'all', priceMin: '', priceMax: '', brands: [], search: '' };
+  state.productPage = 1;
+  state.sortBy = 'featured';
+  render();
+};
+window.toggleBrandFilter = (brand) => {
+  const idx = state.filters.brands.indexOf(brand);
+  if (idx > -1) state.filters.brands.splice(idx, 1);
+  else state.filters.brands.push(brand);
+  state.productPage = 1;
+  render();
+};
+window.goPage = (pg) => { state.productPage = pg; window.scrollTo(0, 200); render(); };
+window.openProduct = (id) => {
+  state.selectedProduct = state.products.find(p => p.id === id);
+  state.currentPage = 'product-detail';
+  window.scrollTo(0, 0);
+  render();
+};
+window.addToCartById = (id) => {
+  const p = state.products.find(x => x.id === id);
+  if (p) addToCart(p);
+};
+window.toggleWishlistById = (id) => {
+  const p = state.products.find(x => x.id === id);
+  if (p) toggleWishlist(p);
+};
+window.updateQty = updateQty;
+window.removeFromCart = removeFromCart;
+window.selectPayment = (el, val) => {
+  document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('.radio').style.borderColor = 'var(--clr-accent)';
+};
+window.placeOrder = () => {
+  const name = document.getElementById('co-name')?.value;
+  const phone = document.getElementById('co-phone')?.value;
+  const addr = document.getElementById('co-addr')?.value;
+  if (!name || !phone || !addr) { showToast('Please fill all required fields', 'error'); return; }
+  const orderId = 'RP' + Date.now().toString().slice(-7);
+  state.orders.unshift({
+    id: orderId,
+    customer: name,
+    phone,
+    address: `${addr}, ${document.getElementById('co-city')?.value || 'Jaipur'}`,
+    items: state.cart.map(i => ({ name: i.name, price: i.price, qty: i.qty })),
+    total: cartTotal(),
+    payment: 'COD',
+    status: 'pending',
+    date: new Date().toISOString().split('T')[0]
+  });
+  state.lastOrderId = orderId;
+  state.cart = [];
+  navigate('order-confirmed');
+};
+window.adminLogin = () => {
+  const pass = document.getElementById('admin-pass')?.value;
+  if (pass === state.adminPassword) {
+    state.adminLoggedIn = true;
+    state.adminSection = 'dashboard';
+    render();
+  } else {
+    showToast('Incorrect password. Try: admin123', 'error');
+  }
+};
+window.adminLogout = () => {
+  state.adminLoggedIn = false;
+  navigate('home');
+};
+window.setAdminSection = (section) => {
+  state.adminSection = section;
+  state.editingProduct = null;
+  render();
+};
+window.adminPage = (pg) => { state.adminProductPage = pg; render(); };
+window.filterAdminCat = (cat) => {
+  state.adminCatFilter = cat;
+  state.adminProductPage = 1;
+  render();
+};
+window.editProduct = (id) => {
+  state.editingProduct = state.products.find(p => p.id === id);
+  state.adminSection = 'add-product';
+  render();
+};
+window.deleteProduct = (id) => {
+  if (confirm('Delete this product?')) {
+    state.products = state.products.filter(p => p.id !== id);
+    showToast('Product deleted successfully', 'info');
+    render();
+  }
+};
+window.saveNewProduct = () => {
+  const name = document.getElementById('ap-name')?.value;
+  const brand = document.getElementById('ap-brand')?.value;
+  const price = parseInt(document.getElementById('ap-price')?.value);
+  const mrp = parseInt(document.getElementById('ap-mrp')?.value);
+  const cat = document.getElementById('ap-cat')?.value;
+  const desc = document.getElementById('ap-desc')?.value;
+  const inStock = document.getElementById('ap-stock')?.value === '1';
+  if (!name || !brand || !price || !mrp) { showToast('Please fill all required fields', 'error'); return; }
+  const newProd = {
+    id: Math.max(...state.products.map(p=>p.id)) + 1,
+    name, brand, category: cat, price, mrp,
+    discount: Math.round((1-price/mrp)*100),
+    rating: 4.0, reviews: 0,
+    description: desc || 'Premium quality product',
+    specs: {}, emoji: PRODUCT_EMOJIS[cat] || '📦',
+    gradient: BG_GRADIENTS[cat] || 'linear-gradient(135deg,#f0f4ff,#e8f0fe)',
+    badge: 'NEW', inStock
+  };
+  state.products.unshift(newProd);
+  showToast('Product added successfully! 🎉');
+  setAdminSection('products');
+};
+window.saveEditProduct = () => {
+  const p = state.editingProduct;
+  if (!p) return;
+  const name = document.getElementById('ap-name')?.value;
+  const brand = document.getElementById('ap-brand')?.value;
+  const price = parseInt(document.getElementById('ap-price')?.value);
+  const mrp = parseInt(document.getElementById('ap-mrp')?.value);
+  const cat = document.getElementById('ap-cat')?.value;
+  const desc = document.getElementById('ap-desc')?.value;
+  const inStock = document.getElementById('ap-stock')?.value === '1';
+  if (!name || !brand || !price || !mrp) { showToast('Please fill all required fields', 'error'); return; }
+  Object.assign(p, { name, brand, price, mrp, category: cat, description: desc, inStock, discount: Math.round((1-price/mrp)*100) });
+  state.editingProduct = null;
+  showToast('Product updated successfully! ✓');
+  setAdminSection('products');
+};
+window.updateOrderStatus = (id, status) => {
+  const order = state.orders.find(o => o.id === id);
+  if (order) { order.status = status; showToast(`Order ${id} marked as ${status}`); render(); }
+};
+window.togglePaymentMethod = (el, id) => {
+  showToast(`Payment method updated`, 'info');
+};
+
+// ===== SECRET ADMIN ACCESS =====
+let secretClickCount = 0;
+let secretClickTimer = null;
+window.handleSecretClick = () => {
+  secretClickCount++;
+  clearTimeout(secretClickTimer);
+  secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 1500);
+  if (secretClickCount >= 5) {
+    secretClickCount = 0;
+    navigate('admin');
+  }
+};
+render();
+</script>
+</body>
+</html>
